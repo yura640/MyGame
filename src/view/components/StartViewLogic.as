@@ -5,12 +5,14 @@ package view.components
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
+	import flash.display.SimpleButton;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	import utils.EventTrans;
 	import utils.WareHouse;
 	
 	public class StartViewLogic extends ViewLogic //логика графики, как аппендицит медиатора, создает, подгружает графику
@@ -18,18 +20,20 @@ package view.components
 													// передает эвент в старт медиатор
 	{	
 		public var cells:Vector.<MovieClip>;
-		public var target:DisplayObjectContainer;
+		public var target:TargetVievLogic;
+		public var newTarget:TargetVievLogic;
 		public var timer:Timer;
+		public var neededCell1:int;
+		public var neededSepar1:int;
+		
 		
 		public function StartViewLogic()
 		{
-			super(WareHouse.getInstance(). getAsset('www_1') as MovieClip);
+			super(WareHouse.getInstance().getAsset('www_1') as MovieClip);
 		
 			initAllCellsAndTarget();
 		}
 		private function initAllCellsAndTarget():void{
-			target = WareHouse.getInstance().getAsset("vrag_1") as DisplayObjectContainer;
-			target.addEventListener(MouseEvent.CLICK, onClickOnTarget);
 			
 			cells = new Vector.<MovieClip>;
 			var counter:int = 0;
@@ -37,42 +41,56 @@ package view.components
 				cells.push(content['circle_'+counter]);
 				counter++;
 			}
-			initTimer();
+//			initTimer();
+//		}
+//		private function initTimer():void{
+//			timer = new Timer(1500);
+//			timer.addEventListener(TimerEvent.TIMER, onTimer);
+//			timer.start();
+//		}
+//		private function onTimer(event:TimerEvent):void{
+//			addTargetToRandomCell();
 		}
-		private function initTimer():void{
-			timer = new Timer(1500);
-			timer.addEventListener(TimerEvent.TIMER, onTimer);
-			timer.start();
+		public function addTargetToRandomCell(neededCell:int, neededSepar:int):void{
+			neededCell1 = neededCell;
+			neededSepar1 = neededSepar;
+			target = new TargetVievLogic();
+			 target.changeEnemie(neededSepar) as DisplayObject;
+			 target.addEventListener("sdfsdf", funkciya)
+		}	 
+			 public function funkciya():void{
+			cells[neededCell1].addChild(WareHouse.getInstance().getAsset("vrag_1") as SimpleButton);
+				 }
+			
+			//var randomCellIndex:int = randomRange(0, cells.length-1);
+			
+			
+			//нью таргет.чейндженемы(індекс врага)
+			//целс
+			//cells[randomCellIndex].addChild(newTarget). // каретн таргет);
 		}
-		private function onTimer(event:TimerEvent):void{
-			addTargetToRandomCell();
-		}
-		private function addTargetToRandomCell():void{
-			var randomCellIndex:int = randomRange(0, cells.length-1);
-			cells[randomCellIndex].addChild(target);
-		}
-		private function onClickOnTarget(event:MouseEvent):void{
-			target.parent.removeChild(target);
-			dispatchEvent(new Event(GeneralNotification.SEPAR_DEAD)); 
-		}
-		public function randomRange(minNum:Number, maxNum:Number):Number{
-			return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
-		}
-		
-		private function newEnemieTimer():void{
-			timer = new Timer(10000);
-			timer.addEventListener(TimerEvent.TIMER, createNewEnemie);
-			//timer.start();
-		function createNewEnemie (event:TimerEvent):void{
-			var n:int = Math.floor(Math.random()*11);
-			if (n>6){
-				dispatchEvent(new Event("sozdatBoss"));
-			}
-			else {
-				dispatchEvent(new Event("sozdatComrad"));
-			}
-		}
-		}
-	
-	}
+//		private function onClickOnTarget(event:MouseEvent):void{
+//			target.parent.removeChild(target);
+//			dispatchEvent(new EventTrans(GeneralNotification.SEPAR_DEAD, target )); 
+//		}
+//		public function randomRange(minNum:Number, maxNum:Number):Number{
+//			return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+//		}
+//		
+//		private function newEnemieTimer():void{
+//			timer = new Timer(10000);
+//			timer.addEventListener(TimerEvent.TIMER, createNewEnemie);
+//			//timer.start();
+//		function createNewEnemie (event:TimerEvent):void{
+//			var n:int = Math.floor(Math.random()*11);
+//			if (n>6){
+//				dispatchEvent(new EventTrans("sozdatBoss", target));
+//			}
+//			else {
+//				//dispatchEvent(new EventTrans("sozdatComrad"));
+//			}
+//		}
+//		}
+//	
+//	}
 }

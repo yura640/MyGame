@@ -7,8 +7,12 @@ package view.mediator
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
+	import org.osmf.events.DisplayObjectEvent;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.puremvc.as3.patterns.observer.Notification;
+	
+	import utils.EventTrans;
 	
 	import view.components.StartViewLogic;
 	import view.components.ViewLogic;
@@ -17,6 +21,8 @@ package view.mediator
 	{
 		public static const NAME:String = "StartMediator";
 		
+		
+		
 		public function StartMediator()
 		{
 			super(NAME, new StartViewLogic());
@@ -24,16 +30,31 @@ package view.mediator
 			
 		}
 		
-		protected function onSeparDead(event:Event):void
+		protected function onSeparDead(event:EventTrans):void
 		{
-			sendNotification(GeneralNotification.SEPAR_KILLED);
 			
-		}
-		//override public function listNotificationInterests():Array{
-			//return [GeneralNotification.SAY_HELLO];
+			
+			sendNotification(GeneralNotification.SEPAR_KILLED, event.data);
+			//вьюкомпонет.едд енеміЕнемі Ту Селл(енемі індекс, целлІндекс)
 		}
 		
-
-			
+		
+		override public function listNotificationInterests():Array{
+			return ["pushEnemiOnCell"];
+		}
+		override public function handleNotification(notification:INotification):void{
+				
+				switch(notification.getName()){
+					case "pushEnemiOnCell":
+						var neededCell:int = notification.getBody().cell as int;
+						var neededSepar:int = notification.getBody().separ as int;
+						//break;
+		//дальше передаэмо цифри через метод ИНИТ Дата, який записанний у старт вью
+				
+					viewComponent.addTargetToRandomCell(neededCell, neededSepar);
+				}
+		
+			}
+		}
 
 }

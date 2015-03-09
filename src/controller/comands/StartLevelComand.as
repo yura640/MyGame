@@ -9,6 +9,7 @@ package controller.comands
 	import flash.net.URLRequest;
 	import flash.utils.setTimeout;
 	
+	import model.proxy.GameProxy;
 	import model.proxy.UserProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -18,27 +19,18 @@ package controller.comands
 	import utils.WareHouse;
 	
 	import view.mediator.ScoreMediator;
-	
 	import view.mediator.StartMediator;
 	
 	public class StartLevelComand extends SimpleCommand
 	{
 		override public function execute(notification:INotification):void{
 		
-			var loader:Loader = new Loader();
-			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoad);
-			var zapros:URLRequest = new URLRequest("Crot.swf");
-			loader.load(zapros);
-			}
-		
-			public function onLoad (event:Event):void
-			{
-				var loaderInfo:LoaderInfo = event.target as LoaderInfo; 
-				loaderInfo.removeEventListener(Event.COMPLETE, onLoad)
-				WareHouse.getInstance().setData(loaderInfo);
+			
+				
 				
 				facade.registerMediator( new StartMediator());
 				facade.registerMediator( new ScoreMediator());
+				(facade.retrieveProxy(GameProxy.NAME) as GameProxy).startGame();
 			}
 		}
 	}

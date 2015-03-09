@@ -9,6 +9,7 @@ package controller.comands
 	import flash.net.URLRequest;
 	import flash.utils.setTimeout;
 	
+	import model.proxy.GameProxy;
 	import model.proxy.UserProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -31,9 +32,11 @@ package controller.comands
 			var rootSprite:Sprite = notification.getBody() as Sprite; 
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
+			facade.registerProxy(new GameProxy());
 			
-			Facade.getInstance().registerCommand(GeneralNotification.START_LEVEL, StartLevelComand);
-			Facade.getInstance().sendNotification(GeneralNotification.START_LEVEL);			
+			Facade.getInstance().registerCommand(GeneralNotification.START_LEVEL, LoadGameComand);
+			Facade.getInstance().sendNotification(GeneralNotification.START_LEVEL);
+			facade.registerCommand("gameIsLoaded", StartLevelComand);
 			facade.registerCommand(GeneralNotification.SEPAR_KILLED, SeparKilledCommand);	
 					
 		}
