@@ -48,9 +48,7 @@ package view.mediator
 					case "pushEnemiOnCell":
 						var neededCell:int = notification.getBody().cell as int;
 						var neededSepar:int = notification.getBody().separ as int;
-						//break;
-		//дальше передаэмо цифри через метод ИНИТ Дата, який записанний у старт вью
-				
+						
 					viewComponent.addTargetToRandomCell(neededCell, neededSepar);
 				}
 		
