@@ -25,7 +25,7 @@ package view.components
 		public var timer:Timer;
 		public var neededCell1:int;
 		public var neededSepar1:int;
-		
+		public var curentTarget:DisplayObject;
 		
 		public function StartViewLogic()
 		{
@@ -59,7 +59,20 @@ package view.components
 			neededSepar1 = neededSepar;
 			target = new TargetVievLogic(neededSepar1);
 			cells[neededCell1].addChild(target.currentTarget);
-		}	 
+			curentTarget = target.currentTarget;
+			
+		}
+		
+	
+			newTarget.addEventListener("udalitVraga", onRemove);
+			private function onRemove(event:EventTrans):void{
+				var removableEnemi:DisplayObject = event.data as DisplayObject;
+				cells[neededCell1].addChild(removableEnemi);
+			}
+			}
+		}
+		
+			 
 		
 		
 //		private function onClickOnTarget(event:MouseEvent):void{
@@ -85,5 +98,5 @@ package view.components
 //		}
 //		}
 //	
-	}
-}
+	
+

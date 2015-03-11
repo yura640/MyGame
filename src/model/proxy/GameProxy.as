@@ -31,10 +31,8 @@ package model.proxy
 		}
 			
 			private function onTimer(event:TimerEvent):void{
-			sendNotification("dobavit vraga");
+			sendNotification(GeneralNotification.GENERATE_ENEMI_AND_CELL);
 		}
-			var neededCell:int = Math.floor(Math.random()*10);
-			var neededSepar:int = Math.floor(Math.random()*2+1);
-			sendNotification(GeneralNotification.PUSH_ENEMI_ON_CELL, {cell:neededCell, separ:neededSepar});
+			
 		}
 	}

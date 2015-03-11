@@ -4,6 +4,8 @@ package view.components
 	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
 	import flash.events.EventDispatcher;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.core.ButtonAsset;
 	
@@ -13,12 +15,23 @@ package view.components
 	public class TargetVievLogic extends EventDispatcher
 	{
 		public var currentTarget:DisplayObject;
-		// створюємо вари
+		public var timer:Timer;
 		
 		public function TargetVievLogic(neededSepar1:int)
 		{
 			super();
 			currentTarget = WareHouse.getInstance().getAsset("vrag_"+neededSepar1) as SimpleButton;
+			
+			removeEnemi();
 		}
+		
+		public function removeEnemi():void{
+			timer = new Timer(3000);
+			timer.addEventListener(TimerEvent.TIMER, timerDown);
+			timer.start();
+		}
+		public function timerDown(event:TimerEvent):void{
+		dispatchEvent(new EventTrans("udalitVraga", currentTarget ));
 	}
+}
 }

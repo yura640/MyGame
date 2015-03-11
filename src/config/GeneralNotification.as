@@ -13,5 +13,6 @@ package config
 		public static const CHANGE_SCORE:String = "changeScore";
 		public static const GAME_IS_LOADED:String = "gameIsLoaded";
 		public static const PUSH_ENEMI_ON_CELL:String = "pushEnemiOnCell";
+		public static const GENERATE_ENEMI_AND_CELL:String = "dobavitVraga";
 	}
 }

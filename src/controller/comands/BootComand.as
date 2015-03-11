@@ -34,7 +34,8 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.LOAD_GAME, LoadGameComand);
 			facade.registerCommand(GeneralNotification.GAME_IS_LOADED, StartLevelComand);
 			facade.registerCommand(GeneralNotification.SEPAR_KILLED, SeparKilledCommand);	
-			
+			facade.registerCommand (GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand);
+				
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());
