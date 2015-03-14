@@ -22,16 +22,13 @@ package view.components
 			super();
 			currentTarget = WareHouse.getInstance().getAsset("vrag_"+neededSepar1) as SimpleButton;
 			
-			removeEnemi();
+			
 		}
 		
-		public function removeEnemi():void{
-			timer = new Timer(3000);
-			timer.addEventListener(TimerEvent.TIMER, timerDown);
-			timer.start();
-		}
-		public function timerDown(event:TimerEvent):void{
-		dispatchEvent(new EventTrans("udalitVraga", currentTarget ));
+		public function killEnemie():void{
+			
+			currentTarget.parent.removeChild(currentTarget);
 	}
-}
+
+	}
 }

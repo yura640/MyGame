@@ -59,16 +59,29 @@ package view.components
 			neededSepar1 = neededSepar;
 			target = new TargetVievLogic(neededSepar1);
 			cells[neededCell1].addChild(target.currentTarget);
-			curentTarget = target.currentTarget;
-			
-		}
 		
-	
-			newTarget.addEventListener("udalitVraga", onRemove);
-			private function onRemove(event:EventTrans):void{
-				var removableEnemi:DisplayObject = event.data as DisplayObject;
-				cells[neededCell1].addChild(removableEnemi);
-			}
+			removeEnemie();
+		}	
+		public function removeEnemie():void{
+			if (neededSepar1==1){
+				timer = new Timer(1600);
+			}if (neededSepar1==2){
+				timer = new Timer(1800);
+			}if (neededSepar1==3){
+				timer = new Timer(2000);
+			}	
+			timer.addEventListener(TimerEvent.TIMER, timerDown);
+			timer.start(); // возможно нада перенос
+		}
+		public function timerDown(event:TimerEvent):void{
+			target.killEnemie();
+		}
+//	
+//			newTarget.addEventListener("udalitVraga", onRemove);
+//			function onRemove(event:EventTrans):void{
+//				var removableEnemi:DisplayObject = event.data as DisplayObject;
+//				cells[neededCell1].removeChild(removableEnemi);
+//			}
 			}
 		}
 		
