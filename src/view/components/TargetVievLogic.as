@@ -3,7 +3,9 @@ package view.components
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
@@ -22,8 +24,13 @@ package view.components
 			super();
 			currentTarget = WareHouse.getInstance().getAsset("vrag_"+neededSepar1) as SimpleButton;
 			
-			
+			currentTarget.addEventListener(MouseEvent.CLICK, clickOnTarget);
+		}	
+		public function clickOnTarget(e:MouseEvent):void{
+			dispatchEvent(new Event ("clickOnTarget"));
 		}
+			
+		
 		
 		public function killEnemie():void{
 			

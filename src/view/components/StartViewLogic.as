@@ -44,15 +44,6 @@ package view.components
 //			initTimer();
 		}
 		
-//		private function initTimer():void{
-//			timer = new Timer(1500);
-//			timer.addEventListener(TimerEvent.TIMER, onTimer);
-//			timer.start();
-//		}
-		
-//		private function onTimer(event:TimerEvent):void{
-//			addTargetToRandomCell();
-//		}
 		
 		public function addTargetToRandomCell(neededCell:int, neededSepar:int):void{
 			neededCell1 = neededCell;
@@ -64,18 +55,25 @@ package view.components
 		}	
 		public function removeEnemie():void{
 			if (neededSepar1==1){
-				timer = new Timer(1600);
+				timer = new Timer(1500);
 			}if (neededSepar1==2){
-				timer = new Timer(1800);
-			}if (neededSepar1==3){
 				timer = new Timer(2000);
+			}if (neededSepar1==3){
+				timer = new Timer(1000);
 			}	
+			timer.start(); 
 			timer.addEventListener(TimerEvent.TIMER, timerDown);
-			timer.start(); // возможно нада перенос
+			
 		}
 		public function timerDown(event:TimerEvent):void{
 			target.killEnemie();
 		}
+		
+//		target.addEventListener("clickOnTarget", delEnemie);
+//		
+//		public function delEnemie(e:Event):void{
+//			target.killEnemie();
+//		}
 //	
 //			newTarget.addEventListener("udalitVraga", onRemove);
 //			function onRemove(event:EventTrans):void{

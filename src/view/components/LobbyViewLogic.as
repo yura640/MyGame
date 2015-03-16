@@ -29,7 +29,7 @@ package view.components
 		}
 		 public function onClickStartBtn(event:MouseEvent):void{
 			 dispatchEvent(new Event("btnClicked")); 
-			 trace ("dfsdfsdf");
+			 
 			 
 		 }
 	}
