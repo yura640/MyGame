@@ -49,7 +49,9 @@ package view.mediator
 					var neededCell:int = notification.getBody().cell as int;
 					var neededSepar:int = notification.getBody().separ as int;
 					startViewLogic.addTargetToRandomCell(neededCell, neededSepar);
+					startViewLogic.removeEnemie();
 					break;
+				
 					//дальше передаэмо цифри через метод ИНИТ Дата, який записанний у старт вью
 			}
 		}

@@ -41,7 +41,7 @@ package view.components
 				cells.push(content['circle_'+counter]);
 				counter++;
 			}
-//			initTimer();
+
 		}
 		
 		
@@ -51,23 +51,26 @@ package view.components
 			target = new TargetVievLogic(neededSepar1);
 			cells[neededCell1].addChild(target.currentTarget);
 		
-			removeEnemie();
+			
 		}	
 		public function removeEnemie():void{
-			if (neededSepar1==1){
-				timer = new Timer(1500);
-			}if (neededSepar1==2){
-				timer = new Timer(2000);
-			}if (neededSepar1==3){
+//			if (neededSepar1==1){
+//				timer = new Timer(1500);
+//			}if (neededSepar1==2){
+//				timer = new Timer(2000);
+//			}if (neededSepar1==3){
 				timer = new Timer(1000);
-			}	
-			timer.start(); 
-			timer.addEventListener(TimerEvent.TIMER, timerDown);
+			//}	
 			
+			timer.addEventListener(TimerEvent.TIMER, timerDown);
+			timer.start(); 
 		}
 		public function timerDown(event:TimerEvent):void{
-			target.killEnemie();
+			
+			cells[neededCell1].removeChild(target.currentTarget);
+			timer.stop();
 		}
+		
 		
 //		target.addEventListener("clickOnTarget", delEnemie);
 //		
