@@ -51,24 +51,18 @@ package view.components
 			target = new TargetVievLogic(neededSepar1);
 			cells[neededCell1].addChild(target.currentTarget);
 		
-			
+			target.currentTarget.addEventListener(MouseEvent.CLICK, onClickOnTarget);
+		
+			function onClickOnTarget(e:MouseEvent):void{
+				dispatchEvent(new Event('onClickOnTarget'));
+			}
+				
+				
 		}	
 		public function removeEnemie():void{
-//			if (neededSepar1==1){
-//				timer = new Timer(1500);
-//			}if (neededSepar1==2){
-//				timer = new Timer(2000);
-//			}if (neededSepar1==3){
-				timer = new Timer(1000);
-			//}	
-			
-			timer.addEventListener(TimerEvent.TIMER, timerDown);
-			timer.start(); 
-		}
-		public function timerDown(event:TimerEvent):void{
 			
 			cells[neededCell1].removeChild(target.currentTarget);
-			timer.stop();
+			
 		}
 		
 		

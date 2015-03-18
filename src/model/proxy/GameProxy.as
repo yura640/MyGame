@@ -34,5 +34,16 @@ package model.proxy
 			sendNotification(GeneralNotification.GENERATE_ENEMI_AND_CELL);
 		}
 			
+		public function removeEnemie():void{
+			timer = new Timer(1000);
+			
+			timer.addEventListener(TimerEvent.TIMER, timerDown);
+			timer.start(); 
+		}
+		public function timerDown(event:TimerEvent):void{
+			sendNotification(GeneralNotification.REMOVE_ENEMIE);
+			timer.stop();
+		}
+			
 		}
 	}

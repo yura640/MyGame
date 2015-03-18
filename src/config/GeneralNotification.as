@@ -14,5 +14,9 @@ package config
 		public static const GAME_IS_LOADED:String = "gameIsLoaded";
 		public static const PUSH_ENEMI_ON_CELL:String = "pushEnemiOnCell";
 		public static const GENERATE_ENEMI_AND_CELL:String = "dobavitVraga";
+		public static const REMOVE_ENEMIE:String = "removeEnemie"
+		public static const TARGET_IS_ADDED:String = "targetIsAdded"
+		public static const START_THE_GAME:String = "startTheGame"
+		
 	}
 }

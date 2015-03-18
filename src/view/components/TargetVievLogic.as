@@ -17,25 +17,14 @@ package view.components
 	public class TargetVievLogic extends EventDispatcher
 	{
 		public var currentTarget:DisplayObject;
-		public var timer:Timer;
+	
 		
 		public function TargetVievLogic(neededSepar1:int)
 		{
 			super();
 			currentTarget = WareHouse.getInstance().getAsset("vrag_"+neededSepar1) as SimpleButton;
 			
-			currentTarget.addEventListener(MouseEvent.CLICK, clickOnTarget);
 		}	
-		public function clickOnTarget(e:MouseEvent):void{
-			dispatchEvent(new Event ("clickOnTarget"));
-		}
-			
-		
-		
-		public function killEnemie():void{
-			
-			currentTarget.parent.removeChild(currentTarget);
-	}
-
+	
 	}
 }

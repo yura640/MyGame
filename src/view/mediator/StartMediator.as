@@ -40,7 +40,7 @@ package view.mediator
 		
 		
 		override public function listNotificationInterests():Array{
-			return [GeneralNotification.PUSH_ENEMI_ON_CELL];
+			return [GeneralNotification.PUSH_ENEMI_ON_CELL, GeneralNotification.REMOVE_ENEMIE];
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -49,12 +49,21 @@ package view.mediator
 					var neededCell:int = notification.getBody().cell as int;
 					var neededSepar:int = notification.getBody().separ as int;
 					startViewLogic.addTargetToRandomCell(neededCell, neededSepar);
+					sendNotification(GeneralNotification.TARGET_IS_ADDED);
+					break;
+				case GeneralNotification.REMOVE_ENEMIE:
 					startViewLogic.removeEnemie();
 					break;
 				
-					//дальше передаэмо цифри через метод ИНИТ Дата, який записанний у старт вью
+					
 			}
+			viewComponent.addEventListener('onClickOnTarget', removeEnemie);
+			 function removeEnemie():void{
+				startViewLogic.removeEnemie();
+			}
+			
 		}
+		
 		
 		private function get startViewLogic():StartViewLogic{
 			return viewComponent as StartViewLogic;
