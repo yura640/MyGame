@@ -20,7 +20,7 @@ package controller.comands
 	
 	import view.mediator.RootMediator;
 	import view.mediator.ScoreMediator;
-	import view.mediator.StartMediator;
+	import view.mediator.GamePlayMediator;
 	
 	public class BootComand extends SimpleCommand
 	{

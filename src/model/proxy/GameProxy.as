@@ -35,7 +35,7 @@ package model.proxy
 		}
 			
 		public function removeEnemie():void{
-			timer = new Timer(1000);
+			timer = new Timer(800);
 			
 			timer.addEventListener(TimerEvent.TIMER, timerDown);
 			timer.start(); 

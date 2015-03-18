@@ -7,12 +7,12 @@ package controller.comands
 	
 	import view.mediator.LobbyMediator;
 	import view.mediator.ScoreMediator;
-	import view.mediator.StartMediator;
+	import view.mediator.GamePlayMediator;
 	
 	public class StartLevelComand extends SimpleCommand
 	{
 		override public function execute(notification:INotification):void{
-			facade.registerMediator( new StartMediator());
+			facade.registerMediator( new GamePlayMediator());
 			facade.registerMediator( new ScoreMediator());
 			facade.removeMediator(LobbyMediator.NAME);
 			//change to command

@@ -15,7 +15,7 @@ package view.components
 	import utils.EventTrans;
 	import utils.WareHouse;
 	
-	public class StartViewLogic extends ViewLogic //логика графики, как аппендицит медиатора, создает, подгружает графику
+	public class GamePlayViewLogic extends ViewLogic //логика графики, как аппендицит медиатора, создает, подгружает графику
 													//вешает лисенеры, в этой игре делает большуя часть работы.
 													// передает эвент в старт медиатор
 	{	
@@ -27,7 +27,7 @@ package view.components
 		public var neededSepar1:int;
 		public var curentTarget:DisplayObject;
 		
-		public function StartViewLogic()
+		public function GamePlayViewLogic()
 		{
 			super(WareHouse.getInstance().getAsset('www_1') as MovieClip);
 		
@@ -49,16 +49,18 @@ package view.components
 			neededCell1 = neededCell;
 			neededSepar1 = neededSepar;
 			target = new TargetVievLogic(neededSepar1);
+			
 			cells[neededCell1].addChild(target.currentTarget);
 		
 			target.currentTarget.addEventListener(MouseEvent.CLICK, onClickOnTarget);
-		
-			function onClickOnTarget(e:MouseEvent):void{
-				dispatchEvent(new Event('onClickOnTarget'));
+		}
+			public function onClickOnTarget(e:MouseEvent):void{
+				cells[neededCell1].removeChild(target.currentTarget);
+				//dispatchEvent(new Event('onClickOnTarget'));
 			}
 				
 				
-		}	
+			
 		public function removeEnemie():void{
 			
 			cells[neededCell1].removeChild(target.currentTarget);

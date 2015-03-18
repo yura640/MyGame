@@ -14,18 +14,18 @@ package view.mediator
 	
 	import utils.EventTrans;
 	
-	import view.components.StartViewLogic;
+	import view.components.GamePlayViewLogic;
 	import view.components.ViewLogic;
 	
-	public class StartMediator extends UIMediator  
+	public class GamePlayMediator extends UIMediator  
 	{
 		public static const NAME:String = "StartMediator";
 		
 		
 		
-		public function StartMediator()
+		public function GamePlayMediator()
 		{
-			super(NAME, new StartViewLogic());
+			super(NAME, new GamePlayViewLogic());
 			viewComponent.addEventListener(GeneralNotification.SEPAR_DEAD, onSeparDead); //куда его перенести???
 			
 		}
@@ -65,8 +65,8 @@ package view.mediator
 		}
 		
 		
-		private function get startViewLogic():StartViewLogic{
-			return viewComponent as StartViewLogic;
+		private function get startViewLogic():GamePlayViewLogic{
+			return viewComponent as GamePlayViewLogic;
 		}
 	}
 }

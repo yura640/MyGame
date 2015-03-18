@@ -14,7 +14,7 @@ package view.mediator
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.components.ScoreViewLogic;
-	import view.components.StartViewLogic;
+	import view.components.GamePlayViewLogic;
 	import view.components.ViewLogic;
 	
 	public class ScoreMediator extends UIMediator
