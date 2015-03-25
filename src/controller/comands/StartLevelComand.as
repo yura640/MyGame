@@ -1,13 +1,14 @@
 package controller.comands
 {
+	import model.proxy.BonusProxy;
 	import model.proxy.GameProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	import view.mediator.GamePlayMediator;
 	import view.mediator.LobbyMediator;
 	import view.mediator.ScoreMediator;
-	import view.mediator.GamePlayMediator;
 	
 	public class StartLevelComand extends SimpleCommand
 	{
@@ -17,7 +18,9 @@ package controller.comands
 			facade.removeMediator(LobbyMediator.NAME);
 			//change to command
 			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).startGame();
+			sendNotification("sozdatRedBTN");
 			//------------------
+		
 		}
 	}
 }

@@ -25,13 +25,13 @@ package view.components
 		
 		public function ScoreViewLogic()
 		{
-			//super(WareHouse.getInstance().getAsset('panel_1') as MovieClip);
-			super (new Sprite());
+			super(WareHouse.getInstance().getAsset('panel_1') as MovieClip);
+			//super (new Sprite());
 			
 		}
-		public function upScore(rezultat:String):void{
+		public function upScore(rezultat:Object):void{
 			
-			//(content["score"] as TextField).text = "РЕЗУЛЬТАТ " +  rezultat ; 
+			(content["score"] as TextField).text = "РЕЗУЛЬТАТ" +  rezultat ; 
 			
 		}
 	}

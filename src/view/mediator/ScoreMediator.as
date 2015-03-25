@@ -32,11 +32,12 @@ package view.mediator
 			
 			switch(notification.getName()){
 				case GeneralNotification.CHANGE_SCORE:
-					viewComponent.upScore(notification.getBody());
-					break;
-			
-					
+					scoreViewLogic.upScore(notification.getBody());
+					break;		
+		}
+		}
+			private function get scoreViewLogic():ScoreViewLogic{
+				return viewComponent as ScoreViewLogic;
+			}
 	}
 	}
-	}
-}

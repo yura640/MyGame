@@ -21,7 +21,6 @@ package model.proxy
 		
 		public function addScore ():void{
 			user.score++;
-			//trace(user.score);
 			sendNotification(GeneralNotification.CHANGE_SCORE, user.score);
 		
 		}

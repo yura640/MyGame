@@ -1,5 +1,7 @@
 package view.components
 {
+	import config.GeneralNotification;
+	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
@@ -28,7 +30,7 @@ package view.components
 			startBtm.addEventListener(MouseEvent.CLICK, onClickStartBtn);
 		}
 		 public function onClickStartBtn(event:MouseEvent):void{
-			 dispatchEvent(new Event("btnClicked")); 
+			 dispatchEvent(new Event(GeneralNotification.START_BTN_CLICKED)); 
 			 
 			 
 		 }

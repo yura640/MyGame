@@ -9,6 +9,7 @@ package controller.comands
 	import flash.net.URLRequest;
 	import flash.utils.setTimeout;
 	
+	import model.proxy.BonusProxy;
 	import model.proxy.GameProxy;
 	import model.proxy.UserProxy;
 	
@@ -18,9 +19,10 @@ package controller.comands
 	
 	import utils.WareHouse;
 	
+	import view.mediator.BonusMediator;
+	import view.mediator.GamePlayMediator;
 	import view.mediator.RootMediator;
 	import view.mediator.ScoreMediator;
-	import view.mediator.GamePlayMediator;
 	
 	public class BootComand extends SimpleCommand
 	{
@@ -34,14 +36,15 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.LOAD_GAME, LoadGameComand);
 			facade.registerCommand(GeneralNotification.START_THE_GAME, StartLevelComand);
 			facade.registerCommand(GeneralNotification.GAME_IS_LOADED, StartLobbyComand);
-			facade.registerCommand(GeneralNotification.SEPAR_KILLED, SeparKilledCommand);	
 			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand);
 			facade.registerCommand(GeneralNotification.TARGET_IS_ADDED, RemoveEnemieCommand); 
-				
+			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE,KillingEnemieCommand);	
+			facade.registerCommand("sozdatRedBTN", RedBtnStartCommand);
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());
-			
+			facade.registerProxy(new BonusProxy());
+			facade.registerMediator( new BonusMediator());;
 			sendNotification(GeneralNotification.LOAD_GAME);
 		}
 	}

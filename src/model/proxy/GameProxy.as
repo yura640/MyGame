@@ -15,6 +15,7 @@ package model.proxy
 	
 	public class GameProxy extends Proxy
 	{
+		public var removeEnemietimer:Timer;
 		public var timer:Timer;
 		public static const NAME:String = "GameProxy";
 		
@@ -25,7 +26,7 @@ package model.proxy
 		
 		public function startGame():void{
 			
-			timer = new Timer(1500);
+			timer = new Timer(2000);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
 		}
@@ -35,15 +36,17 @@ package model.proxy
 		}
 			
 		public function removeEnemie():void{
-			timer = new Timer(800);
+			removeEnemietimer = new Timer(1500,1);
 			
-			timer.addEventListener(TimerEvent.TIMER, timerDown);
-			timer.start(); 
+			removeEnemietimer.addEventListener(TimerEvent.TIMER, timerDown);
+			removeEnemietimer.start(); 
 		}
 		public function timerDown(event:TimerEvent):void{
 			sendNotification(GeneralNotification.REMOVE_ENEMIE);
-			timer.stop();
-		}
 			
 		}
+		public function timerReset():void{
+			removeEnemietimer.reset();
+		}
 	}
+}

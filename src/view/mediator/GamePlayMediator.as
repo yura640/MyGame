@@ -20,23 +20,20 @@ package view.mediator
 	public class GamePlayMediator extends UIMediator  
 	{
 		public static const NAME:String = "StartMediator";
-		
-		
-		
+	
 		public function GamePlayMediator()
 		{
 			super(NAME, new GamePlayViewLogic());
-			viewComponent.addEventListener(GeneralNotification.SEPAR_DEAD, onSeparDead); //куда его перенести???
-			
+			viewComponent.addEventListener(GeneralNotification.ON_CLICK_ON_TARGET, removeEnemie);
 		}
 		
-		protected function onSeparDead(event:EventTrans):void
-		{
-			
-			
-			sendNotification(GeneralNotification.SEPAR_KILLED, event.data);
-			//вьюкомпонет.едд енеміЕнемі Ту Селл(енемі індекс, целлІндекс)
-		}
+		public function removeEnemie(e:Event):void{
+			sendNotification(GeneralNotification.CLICK_ON_ENEMIE);
+				
+		}	
+		private function get startViewLogic():GamePlayViewLogic{
+			return viewComponent as GamePlayViewLogic;
+		}		
 		
 		
 		override public function listNotificationInterests():Array{
@@ -54,19 +51,13 @@ package view.mediator
 				case GeneralNotification.REMOVE_ENEMIE:
 					startViewLogic.removeEnemie();
 					break;
+					}	
+		}
 				
-					
-			}
-			viewComponent.addEventListener('onClickOnTarget', removeEnemie);
-			 function removeEnemie():void{
-				startViewLogic.removeEnemie();
-			}
-			
-		}
-		
-		
-		private function get startViewLogic():GamePlayViewLogic{
-			return viewComponent as GamePlayViewLogic;
-		}
 	}
 }
+		
+		
+		
+	
+

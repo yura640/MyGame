@@ -1,5 +1,7 @@
 package view.mediator
 {
+	import config.GeneralNotification;
+	
 	import flash.events.Event;
 	
 	import view.components.LobbyViewLogic;
@@ -11,10 +13,11 @@ package view.mediator
 		public function LobbyMediator()
 		{
 			super(NAME, new LobbyViewLogic());
-			viewComponent.addEventListener("btnClicked", btnClicked);
+			viewComponent.addEventListener(GeneralNotification.START_BTN_CLICKED, btnClicked);
 		}
 		public function btnClicked(event:Event):void{
-			sendNotification("startTheGame");
+			sendNotification(GeneralNotification.START_THE_GAME);
+			
 		}
 	}
 }
