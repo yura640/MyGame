@@ -1,5 +1,7 @@
 package model.proxy
 {
+	import config.GeneralNotification;
+	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
@@ -21,7 +23,7 @@ package model.proxy
 		}
 		
 		private function onTimer(event:TimerEvent):void{
-			sendNotification("addRedButtonMediator");
+			sendNotification(GeneralNotification.ADD_RED_BTN_MEDIATOR);
 		}
 		}
 	

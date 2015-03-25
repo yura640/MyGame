@@ -1,5 +1,7 @@
 package view.components
 {
+	import config.GeneralNotification;
+	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
@@ -29,7 +31,7 @@ package view.components
 			redBtn.addEventListener(MouseEvent.CLICK, onClickOnRedBtn);
 		}
 		public function onClickOnRedBtn(e:MouseEvent):void{
-			dispatchEvent(new Event ("ydalitTargetOtRedBtn"));
+			dispatchEvent(new Event (GeneralNotification.DELL_ENI_TARGET));
 			
 		}
 		

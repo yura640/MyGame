@@ -17,7 +17,7 @@ package view.mediator
 		public function BonusMediator()
 		{
 			super(NAME, new BonusVeiwLogic());
-			viewComponent.addEventListener("ydalitTargetOtRedBtn", dellEniTarget);
+			viewComponent.addEventListener(GeneralNotification.DELL_ENI_TARGET, dellEniTarget);
 		}
 		public function dellEniTarget(e:Event):void
 		{
@@ -25,12 +25,12 @@ package view.mediator
 		}
 		
 		override public function listNotificationInterests():Array{
-			return ["addRedButton"];
+			return [GeneralNotification.ADD_RED_BTN];
 		}
 		
 		override public function handleNotification(notification:INotification):void{
 			switch(notification.getName()){
-				case "addRedButton":
+				case GeneralNotification.ADD_RED_BTN:
 					viewComponent.addredBtnToStage();
 			}
 		}

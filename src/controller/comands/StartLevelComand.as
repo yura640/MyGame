@@ -1,5 +1,7 @@
 package controller.comands
 {
+	import config.GeneralNotification;
+	
 	import model.proxy.BonusProxy;
 	import model.proxy.GameProxy;
 	
@@ -18,7 +20,7 @@ package controller.comands
 			facade.removeMediator(LobbyMediator.NAME);
 			//change to command
 			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).startGame();
-			sendNotification("sozdatRedBTN");
+			sendNotification(GeneralNotification.TO_MAKE_RED_BTN);
 			//------------------
 		
 		}

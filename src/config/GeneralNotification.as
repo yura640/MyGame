@@ -20,6 +20,11 @@ package config
 		public static const CLICK_ON_ENEMIE:String = "killEnemie";
 		public static const ON_CLICK_ON_TARGET:String = "onClickOnTarget";
 		public static const START_BTN_CLICKED:String = "startBtnClicked";
+		public static const TO_MAKE_RED_BTN:String = "sozdatRedBTN";
+		public static const DELL_ENI_TARGET:String = "ydalitTargetOtRedBtn";
+		public static const ADD_RED_BTN:String = "addRedButton";
+		public static const ADD_RED_BTN_MEDIATOR:String = "addRedButtonMediator";
+		
 		//public static const 
 	}
 }

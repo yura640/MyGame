@@ -39,8 +39,8 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand);
 			facade.registerCommand(GeneralNotification.TARGET_IS_ADDED, RemoveEnemieCommand); 
 			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE,KillingEnemieCommand);	
-			facade.registerCommand("sozdatRedBTN", RedBtnStartCommand);
-			facade.registerCommand("addRedButtonMediator", addRedButtonMediatorCommand);
+			facade.registerCommand(GeneralNotification.TO_MAKE_RED_BTN, RedBtnStartCommand);
+			facade.registerCommand(GeneralNotification.ADD_RED_BTN_MEDIATOR, addRedButtonMediatorCommand);
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());

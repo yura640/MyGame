@@ -1,5 +1,7 @@
 package controller.comands
 {
+	import config.GeneralNotification;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
@@ -9,7 +11,7 @@ package controller.comands
 	{
 		override public function execute(notification:INotification):void{
 			facade.registerMediator( new BonusMediator());
-			sendNotification("addRedButton");
+			sendNotification(GeneralNotification.ADD_RED_BTN);
 		}
 	}
 }
