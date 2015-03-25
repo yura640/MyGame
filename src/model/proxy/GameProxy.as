@@ -26,7 +26,7 @@ package model.proxy
 		
 		public function startGame():void{
 			
-			timer = new Timer(2000);
+			timer = new Timer(1600);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
 		}
@@ -47,6 +47,7 @@ package model.proxy
 		}
 		public function timerReset():void{
 			removeEnemietimer.reset();
+			
 		}
 	}
 }

@@ -21,7 +21,7 @@ package model.proxy
 		}
 		
 		private function onTimer(event:TimerEvent):void{
-			sendNotification("addRedButton");
+			sendNotification("addRedButtonMediator");
 		}
 		}
 	

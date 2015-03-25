@@ -4,7 +4,9 @@ package view.components
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.sensors.Accelerometer;
 	
 	import utils.WareHouse;
 	
@@ -26,10 +28,15 @@ package view.components
 			redBtn = redBtnContent["redBtn"]
 			redBtn.addEventListener(MouseEvent.CLICK, onClickOnRedBtn);
 		}
+		public function onClickOnRedBtn(e:MouseEvent):void{
+			dispatchEvent(new Event ("ydalitTargetOtRedBtn"));
+			
+		}
 		
-		
-		public function onClickOnRedBtn():void{
-			redBtn.addChild(redBtn);
+		public function addredBtnToStage():void{
+			redBtn.parent.addChild(redBtn);
+			redBtn.x = 290;
+			redBtn.y = 280;
 		}
 		
 	}

@@ -40,11 +40,12 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.TARGET_IS_ADDED, RemoveEnemieCommand); 
 			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE,KillingEnemieCommand);	
 			facade.registerCommand("sozdatRedBTN", RedBtnStartCommand);
+			facade.registerCommand("addRedButtonMediator", addRedButtonMediatorCommand);
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());
 			facade.registerProxy(new BonusProxy());
-			facade.registerMediator( new BonusMediator());;
+			
 			sendNotification(GeneralNotification.LOAD_GAME);
 		}
 	}
