@@ -17,7 +17,7 @@ package model.proxy
 			super(NAME);
 		}
 		public function addRedButton():void{
-			timer = new Timer(5000,1);
+			timer = new Timer(7000,1);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
 		}

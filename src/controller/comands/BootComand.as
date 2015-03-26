@@ -34,8 +34,8 @@ package controller.comands
 			var rootSprite:Sprite = notification.getBody() as Sprite;
 			
 			facade.registerCommand(GeneralNotification.LOAD_GAME, LoadGameComand);
-			facade.registerCommand(GeneralNotification.START_THE_GAME, StartLevelComand);
 			facade.registerCommand(GeneralNotification.GAME_IS_LOADED, StartLobbyComand);
+			facade.registerCommand(GeneralNotification.START_THE_GAME, StartLevelComand);
 			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand);
 			facade.registerCommand(GeneralNotification.TARGET_IS_ADDED, RemoveEnemieCommand); 
 			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE,KillingEnemieCommand);	
