@@ -8,6 +8,7 @@ package model.proxy
 	import flash.events.TimerEvent;
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
+	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -23,12 +24,22 @@ package model.proxy
 		{
 			super(NAME);
 		}
+		public function start():void
+		{
+			setTimeout(gameOver, 10000);
+		}
+		public function gameOver():void
+		{
+			sendNotification("gameOverCommand");
+		}
+		
 		
 		public function startGame():void{
 			
 			timer = new Timer(1200,10);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
+			start();
 		}
 			
 			private function onTimer(event:TimerEvent):void{

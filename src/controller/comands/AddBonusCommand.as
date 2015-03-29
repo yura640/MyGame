@@ -8,7 +8,7 @@ package controller.comands
 	public class AddBonusCommand extends SimpleCommand
 	{
 		override public function execute(notification:INotification):void{
-			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).addBonus();	
+			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).addCurentBonus();	
 	}
 	}
 }

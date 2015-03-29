@@ -18,7 +18,7 @@ package model.proxy
 			super(NAME);
 		}
 		public function addBonusLable():void{
-			timer = new Timer(3000,1);
+			timer = new Timer(4000,1);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
 		}
@@ -29,7 +29,7 @@ package model.proxy
 		
 		public function removeBonusLable():void
 		{
-			lableTimer = new Timer(1500,1);
+			lableTimer = new Timer(3000,1);
 			lableTimer.addEventListener(TimerEvent.TIMER, timerOff);
 			lableTimer.start();
 		}
@@ -39,13 +39,24 @@ package model.proxy
 			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
 		}
 		
-		public function addBonus():void
+		public function addCurentBonus():void
 		{
 			sendNotification(GeneralNotification.ADD_CURENT_BONUS);	
 		}
 		public function resetLableTimer():void
 		{
 			lableTimer.reset();
+		}
+		
+		public function remCurentBonus():void
+		{
+			timer = new Timer(4000,1);
+			timer.addEventListener(TimerEvent.TIMER, onTimerOff);
+			timer.start();
+		}
+		public function onTimerOff(e:TimerEvent):void
+		{
+			sendNotification(GeneralNotification.REMOVE_CURENT_BONUS);
 		}
 		}
 	

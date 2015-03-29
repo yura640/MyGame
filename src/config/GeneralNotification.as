@@ -36,6 +36,9 @@ package config
 		public static const ADD_BONUS_TO_STAGE:String = "addBonusToStage";
 		public static const ADD_CURENT_BONUS:String = "addCurentBonus";
 		public static const DELL_BONUS_RESET_TIMER_COMMAND:String = "udalitBonusLable&ResetTimer";
+		public static const REMOVE_CURENT_BONUS:String = "removeCurentBonus";
+		public static const REMOVE_CURENT_BONUS_COMMAND:String = "remCurentBonusCommand";
+		
 		//public static const 
 	}
 }

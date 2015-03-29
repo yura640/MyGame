@@ -60,7 +60,7 @@ package view.mediator
 		override public function listNotificationInterests():Array{
 			return [GeneralNotification.PUSH_ENEMI_ON_CELL, GeneralNotification.REMOVE_ENEMIE,
 				GeneralNotification.REMOVE_ENEMIE_BY_TIMER, GeneralNotification.ADD_BONUS_LABLE, GeneralNotification.DELL_BONUS_LABLE,
-				GeneralNotification.ADD_CURENT_BONUS];
+				GeneralNotification.ADD_CURENT_BONUS, GeneralNotification.REMOVE_CURENT_BONUS];
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -91,6 +91,10 @@ package view.mediator
 				
 				case GeneralNotification.ADD_CURENT_BONUS:
 					startViewLogic.addRedBtn();
+					sendNotification(GeneralNotification.REMOVE_CURENT_BONUS_COMMAND);
+					break;
+				case GeneralNotification.REMOVE_CURENT_BONUS:
+					startViewLogic.remCurentBonus();
 					break;
 			}
 			

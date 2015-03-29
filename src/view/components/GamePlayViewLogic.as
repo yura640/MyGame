@@ -114,6 +114,11 @@ package view.components
 		{
 			dispatchEvent(new Event(GeneralNotification.ON_CLICK_ON_LABLE));
 		}
+		public function remCurentBonus():void
+		{
+			content.removeChild(redBtn.btn);
+			redBtn.btn.removeEventListener(MouseEvent.CLICK, onClickOnRedBtn);
+		}
 			
 	}
 		
