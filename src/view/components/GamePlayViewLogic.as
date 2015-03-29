@@ -10,6 +10,7 @@ package view.components
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
+	import flash.net.drm.VoucherAccessInfo;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
@@ -22,7 +23,9 @@ package view.components
 	{	
 		public var cells:Vector.<MovieClip>;
 		public var target:TargetVievLogic;
-		public var newTarget:TargetVievLogic;
+		//public var newTarget:TargetVievLogic;
+		public var redBtn:RedBtnViewLigic;
+		public var lableVL:RedBtnViewLigic;
 		public var timer:Timer;
 		public var neededCell1:int;
 		public var neededSepar1:int;
@@ -51,7 +54,7 @@ package view.components
 			target = new TargetVievLogic(neededSepar1);
 			
 			cells[neededCell1].addChild(target.currentTarget);
-		
+			
 			target.currentTarget.addEventListener(MouseEvent.CLICK, onClickOnTarget);
 		}
 			
@@ -62,7 +65,54 @@ package view.components
 
 		public function removeEnemie():void
 		{		
+			if (target.currentTarget.parent != null){
+				
 			cells[neededCell1].removeChild(target.currentTarget);
+			dispatchEvent(new Event(GeneralNotification.RESET_SCORE_AND_TIMER));
+			
+			}
+		}
+		
+		public function removeEnemieByTimer():void
+		{		
+			if (target.currentTarget.parent != null){
+				
+				cells[neededCell1].removeChild(target.currentTarget);
+			
+			}
+		}
+		
+		public function addRedBtn():void
+		{
+			redBtn = new RedBtnViewLigic();
+			content.addChild(redBtn.btn);
+			redBtn.btn.x = 300;
+			redBtn.btn.y = 280;
+			redBtn.btn.addEventListener(MouseEvent.CLICK, onClickOnRedBtn);
+		}
+		public function onClickOnRedBtn(e:MouseEvent):void
+		{
+			dispatchEvent(new Event(GeneralNotification.ON_CLICK_ON_RED_BTN));
+		}
+		
+		public function addbonusLable():void
+		{
+			lableVL = new RedBtnViewLigic();
+			content.addChild(lableVL.lableRedBtn);
+			lableVL.lableRedBtn.x = 415;
+			lableVL.lableRedBtn.y = 60;
+			lableVL.lableRedBtn.addEventListener(MouseEvent.CLICK, onClickOnLable);
+		}
+		
+		public function remBonusLable():void
+		{
+			content.removeChild(lableVL.lableRedBtn);
+			lableVL.lableRedBtn.removeEventListener(MouseEvent.CLICK, onClickOnLable);
+		}
+		
+		public function onClickOnLable(e:MouseEvent):void
+		{
+			dispatchEvent(new Event(GeneralNotification.ON_CLICK_ON_LABLE));
 		}
 			
 	}

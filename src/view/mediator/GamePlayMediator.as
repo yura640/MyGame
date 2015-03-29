@@ -25,10 +25,31 @@ package view.mediator
 		{
 			super(NAME, new GamePlayViewLogic());
 			viewComponent.addEventListener(GeneralNotification.ON_CLICK_ON_TARGET, removeEnemie);
+			viewComponent.addEventListener(GeneralNotification.RESET_SCORE_AND_TIMER, resetScoreAndTimer);
+			viewComponent.addEventListener(GeneralNotification.ON_CLICK_ON_LABLE, addBonusToStage);
+			viewComponent.addEventListener(GeneralNotification.ON_CLICK_ON_RED_BTN, removeTargetByRedBtn);
+		}
+		public function removeTargetByRedBtn (e:Event):void
+		{
+			sendNotification(GeneralNotification.REMOVE_TARGET_BY_RED_BTN);
+		}
+		
+		public function addBonusToStage(e:Event):void
+		{
+			sendNotification(GeneralNotification.ADD_BONUS_TO_STAGE);
+			sendNotification(GeneralNotification.DELL_BONUS_RESET_TIMER_COMMAND);
+			
+		}
+		
+		public function resetScoreAndTimer(a:Event):void
+		{
+			sendNotification(GeneralNotification.RESET_SCORE);
+			sendNotification(GeneralNotification.RESET_TIMER);
 		}
 		
 		public function removeEnemie(e:Event):void{
 			sendNotification(GeneralNotification.CLICK_ON_ENEMIE);
+			
 				
 		}	
 		private function get startViewLogic():GamePlayViewLogic{
@@ -37,7 +58,9 @@ package view.mediator
 		
 		
 		override public function listNotificationInterests():Array{
-			return [GeneralNotification.PUSH_ENEMI_ON_CELL, GeneralNotification.REMOVE_ENEMIE];
+			return [GeneralNotification.PUSH_ENEMI_ON_CELL, GeneralNotification.REMOVE_ENEMIE,
+				GeneralNotification.REMOVE_ENEMIE_BY_TIMER, GeneralNotification.ADD_BONUS_LABLE, GeneralNotification.DELL_BONUS_LABLE,
+				GeneralNotification.ADD_CURENT_BONUS];
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -48,10 +71,30 @@ package view.mediator
 					startViewLogic.addTargetToRandomCell(neededCell, neededSepar);
 					sendNotification(GeneralNotification.TARGET_IS_ADDED);
 					break;
+				
 				case GeneralNotification.REMOVE_ENEMIE:
 					startViewLogic.removeEnemie();
 					break;
-					}	
+				
+				case GeneralNotification.REMOVE_ENEMIE_BY_TIMER:
+					startViewLogic.removeEnemieByTimer();
+					break;
+				
+				case GeneralNotification.ADD_BONUS_LABLE:
+					startViewLogic.addbonusLable();
+					sendNotification(GeneralNotification.DELL_BONUS_LABLE_COMMAND);
+					break;
+				
+				case GeneralNotification.DELL_BONUS_LABLE:
+					startViewLogic.remBonusLable();
+					break;
+				
+				case GeneralNotification.ADD_CURENT_BONUS:
+					startViewLogic.addRedBtn();
+					break;
+			}
+			
+			
 		}
 				
 	}

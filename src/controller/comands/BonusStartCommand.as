@@ -5,13 +5,13 @@ package controller.comands
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import view.mediator.BonusMediator;
 	
-	public class RedBtnStartCommand extends SimpleCommand
+	
+	public class BonusStartCommand extends SimpleCommand
 	{
-		public function RedBtnStartCommand()
+		public function BonusStartCommand()
 			override public function execute(notification:INotification):void{
-				(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).addRedButton();	
+				(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).addBonusLable();	
 				
 			}
 	}

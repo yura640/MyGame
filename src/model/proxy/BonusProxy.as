@@ -10,20 +10,42 @@ package model.proxy
 	public class BonusProxy extends Proxy
 	{
 		public var timer:Timer;
+		public var lableTimer:Timer;
 		
 		public static const NAME:String = "BonusProxy";
 		public function BonusProxy()
 		{
 			super(NAME);
 		}
-		public function addRedButton():void{
-			timer = new Timer(7000,1);
+		public function addBonusLable():void{
+			timer = new Timer(3000,1);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
 		}
 		
 		private function onTimer(event:TimerEvent):void{
-			sendNotification(GeneralNotification.ADD_RED_BTN_MEDIATOR);
+			sendNotification(GeneralNotification.ADD_BONUS_LABLE);
+		}
+		
+		public function removeBonusLable():void
+		{
+			lableTimer = new Timer(1500,1);
+			lableTimer.addEventListener(TimerEvent.TIMER, timerOff);
+			lableTimer.start();
+		}
+		
+		private function timerOff(e:TimerEvent):void
+		{
+			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
+		}
+		
+		public function addBonus():void
+		{
+			sendNotification(GeneralNotification.ADD_CURENT_BONUS);	
+		}
+		public function resetLableTimer():void
+		{
+			lableTimer.reset();
 		}
 		}
 	

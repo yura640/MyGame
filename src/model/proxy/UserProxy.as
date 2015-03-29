@@ -19,8 +19,8 @@ package model.proxy
 			return getData() as UserDto;
 	}
 		
-		public function addScore ():void{
-			user.score++;
+		public function addScore():void{
+			user.score+=100;
 			sendNotification(GeneralNotification.CHANGE_SCORE, user.score);
 		
 		}

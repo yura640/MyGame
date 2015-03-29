@@ -2,19 +2,17 @@ package controller.comands
 {
 	import config.GeneralNotification;
 	
-	import flash.net.sendToURL;
-	
-	import model.proxy.GameProxy;
-	import model.proxy.UserProxy;
+	import model.proxy.BonusProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class KillingEnemieCommand extends SimpleCommand
+	public class RemoveBonusLableResetTimerCommand extends SimpleCommand
 	{
 		override public function execute(notification:INotification):void
 		{
-			sendNotification(GeneralNotification.REMOVE_ENEMIE);
+			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
 		}
 	}
 }

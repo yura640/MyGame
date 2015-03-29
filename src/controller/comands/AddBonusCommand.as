@@ -1,16 +1,14 @@
 package controller.comands
 {
+	import model.proxy.BonusProxy;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	
-	import view.mediator.LobbyMediator;
-	
-	public class StartLobbyComand extends SimpleCommand
+	public class AddBonusCommand extends SimpleCommand
 	{
 		override public function execute(notification:INotification):void{
-			facade.registerMediator( new LobbyMediator());
-			
-		}
+			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).addBonus();	
+	}
 	}
 }

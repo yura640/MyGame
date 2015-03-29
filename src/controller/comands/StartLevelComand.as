@@ -18,11 +18,8 @@ package controller.comands
 			facade.registerMediator( new GamePlayMediator());
 			facade.registerMediator( new ScoreMediator());
 			facade.removeMediator(LobbyMediator.NAME);
-			//change to command
 			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).startGame();
-			sendNotification(GeneralNotification.TO_MAKE_RED_BTN);
-			//------------------
-		
+			sendNotification(GeneralNotification.TO_MAKE_BONUS_LABLE);
 		}
 	}
 }

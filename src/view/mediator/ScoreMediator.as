@@ -13,8 +13,8 @@ package view.mediator
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	import view.components.ScoreViewLogic;
 	import view.components.GamePlayViewLogic;
+	import view.components.ScoreViewLogic;
 	import view.components.ViewLogic;
 	
 	public class ScoreMediator extends UIMediator
@@ -32,7 +32,7 @@ package view.mediator
 			
 			switch(notification.getName()){
 				case GeneralNotification.CHANGE_SCORE:
-					scoreViewLogic.upScore(notification.getBody());
+					scoreViewLogic.upScore(notification.getBody() as int);
 					break;		
 		}
 		}

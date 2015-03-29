@@ -20,11 +20,22 @@ package config
 		public static const CLICK_ON_ENEMIE:String = "killEnemie";
 		public static const ON_CLICK_ON_TARGET:String = "onClickOnTarget";
 		public static const START_BTN_CLICKED:String = "startBtnClicked";
-		public static const TO_MAKE_RED_BTN:String = "sozdatRedBTN";
+		public static const TO_MAKE_BONUS_LABLE:String = "sozdatBonusLable";
 		public static const DELL_ENI_TARGET:String = "ydalitTargetOtRedBtn";
 		public static const ADD_RED_BTN:String = "addRedButton";
-		public static const ADD_RED_BTN_MEDIATOR:String = "addRedButtonMediator";
-		
+		public static const ADD_BONUS_LABLE:String = "addBonusLable";
+		public static const RESET_SCORE_AND_TIMER:String = "resetScoreAndTimer";
+		public static const RESET_SCORE:String = "resetScore";
+		public static const RESET_TIMER:String = "resetTimer";
+		public static const REMOVE_ENEMIE_BY_TIMER:String = "removeEnemieByTimer";
+		public static const DELL_BONUS_LABLE_COMMAND:String = "dellBonusLableComand";
+		public static const DELL_BONUS_LABLE:String = "udalitBonusLable";
+		public static const ON_CLICK_ON_RED_BTN:String = "onClickOnRedBtn";
+		public static const ON_CLICK_ON_LABLE:String = "onClickOnLable";
+		public static const REMOVE_TARGET_BY_RED_BTN:String = "removeTargetByRedBtn";
+		public static const ADD_BONUS_TO_STAGE:String = "addBonusToStage";
+		public static const ADD_CURENT_BONUS:String = "addCurentBonus";
+		public static const DELL_BONUS_RESET_TIMER_COMMAND:String = "udalitBonusLable&ResetTimer";
 		//public static const 
 	}
 }

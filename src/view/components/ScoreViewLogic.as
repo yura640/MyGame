@@ -29,9 +29,9 @@ package view.components
 			//super (new Sprite());
 			
 		}
-		public function upScore(rezultat:Object):void{
+		public function upScore(rezultat:int):void{
 			
-			(content["score"] as TextField).text = "РЕЗУЛЬТАТ" +  rezultat ; 
+			(content["score"] as TextField).text = "РЕЗУЛЬТАТ : " +  rezultat ; 
 			
 		}
 	}

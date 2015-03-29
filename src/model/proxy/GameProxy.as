@@ -26,7 +26,7 @@ package model.proxy
 		
 		public function startGame():void{
 			
-			timer = new Timer(1200);
+			timer = new Timer(1200,10);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
 		}
@@ -36,13 +36,13 @@ package model.proxy
 		}
 			
 		public function removeEnemie():void{
-			removeEnemietimer = new Timer(900,1);
+			removeEnemietimer = new Timer(800,1);
 			
 			removeEnemietimer.addEventListener(TimerEvent.TIMER, timerDown);
 			removeEnemietimer.start(); 
 		}
 		public function timerDown(event:TimerEvent):void{
-			sendNotification(GeneralNotification.REMOVE_ENEMIE);
+			sendNotification(GeneralNotification.REMOVE_ENEMIE_BY_TIMER);
 			
 		}
 		public function timerReset():void{

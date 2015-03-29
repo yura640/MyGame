@@ -19,7 +19,6 @@ package controller.comands
 	
 	import utils.WareHouse;
 	
-	import view.mediator.BonusMediator;
 	import view.mediator.GamePlayMediator;
 	import view.mediator.RootMediator;
 	import view.mediator.ScoreMediator;
@@ -39,8 +38,14 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand);
 			facade.registerCommand(GeneralNotification.TARGET_IS_ADDED, RemoveEnemieCommand); 
 			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE,KillingEnemieCommand);	
-			facade.registerCommand(GeneralNotification.TO_MAKE_RED_BTN, RedBtnStartCommand);
-			facade.registerCommand(GeneralNotification.ADD_RED_BTN_MEDIATOR, addRedButtonMediatorCommand);
+			facade.registerCommand(GeneralNotification.TO_MAKE_BONUS_LABLE, BonusStartCommand);
+			facade.registerCommand(GeneralNotification.RESET_TIMER, ResetTimerCommand);
+			facade.registerCommand(GeneralNotification.RESET_SCORE, ChangeScoreCommand);
+		
+			facade.registerCommand(GeneralNotification.DELL_BONUS_LABLE_COMMAND, BonusLableRemoveCommand);
+			facade.registerCommand(GeneralNotification.ADD_BONUS_TO_STAGE, AddBonusCommand);
+			facade.registerCommand(GeneralNotification.DELL_BONUS_RESET_TIMER_COMMAND, RemoveBonusLableResetTimerCommand);
+			facade.registerCommand(GeneralNotification.REMOVE_TARGET_BY_RED_BTN, RemoveTargetByRedBtnCommand);
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());
