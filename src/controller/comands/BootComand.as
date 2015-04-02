@@ -46,8 +46,8 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.ADD_BONUS_TO_STAGE, AddBonusCommand);
 			facade.registerCommand(GeneralNotification.DELL_BONUS_RESET_TIMER_COMMAND, RemoveBonusLableResetTimerCommand);
 			facade.registerCommand(GeneralNotification.REMOVE_TARGET_BY_RED_BTN, RemoveTargetByRedBtnCommand);
-			facade.registerCommand("gameOverCommand", GameOverCommand);
-			facade.registerCommand("toMakeReloadCommand", ReloadCommand);
+			facade.registerCommand(GeneralNotification.GAME_OVER_COMMAND, GameOverCommand);
+			facade.registerCommand(GeneralNotification.TO_MAKE_RELOAD_COMMAND, ReloadCommand);
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());

@@ -19,6 +19,7 @@ package controller.comands
 			facade.registerMediator( new ScoreMediator());
 			facade.removeMediator(LobbyMediator.NAME);
 			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).startGame();
+			
 			sendNotification(GeneralNotification.TO_MAKE_BONUS_LABLE);
 		}
 	}

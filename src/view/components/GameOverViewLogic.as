@@ -1,5 +1,7 @@
 package view.components
 {
+	import config.GeneralNotification;
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
@@ -16,9 +18,12 @@ package view.components
 		public var gameOverScore:TextField;
 		public var returnBtn:SimpleButton;
 	
-		public function GameOverViewLogic()
+		public function GameOverViewLogic(rez:int)
 		{
 			super(WareHouse.getInstance().getAsset('gameOver_BG') as MovieClip);
+			
+			(content["gameOver_score"] as TextField).text = " " + rez + " !"; 
+			
 			initBtns();
 		}
 		private function get gameOverContent():Sprite{
@@ -32,13 +37,9 @@ package view.components
 			returnBtn.addEventListener(MouseEvent.CLICK, onClickReturnBtn);
 		}
 		public function onClickReturnBtn(event:MouseEvent):void{
-			dispatchEvent(new Event("returnCommand")); 
-			trace ("sdfsdf");
+			dispatchEvent(new Event(GeneralNotification.RETURN_COMMAND)); 
 		}
-		public function upScore(rezultat:int):void{
-			
-			(content["gameOver_score"] as TextField).text = " " + rezultat + " !"; 
-			
+		
 		}
 	}
-	}
+	

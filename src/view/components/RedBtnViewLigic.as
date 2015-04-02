@@ -12,12 +12,13 @@ package view.components
 	{
 		public var btn:DisplayObject;
 		public var lableRedBtn:MovieClip;
-		
+	
 		public function RedBtnViewLigic()
 		{
 			super();
 			btn = WareHouse.getInstance().getAsset("RedBtn_1") as SimpleButton;
 			lableRedBtn = WareHouse.getInstance().getAsset("bonusLable_1") as MovieClip;
+			
 		}
 	}
 }

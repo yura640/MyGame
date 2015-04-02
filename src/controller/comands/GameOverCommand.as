@@ -8,12 +8,14 @@ package controller.comands
 	import view.mediator.GameOverMediator;
 	
 	public class GameOverCommand extends SimpleCommand
-	{
+	{	
+		
+		
 		override public function execute(notification:INotification):void
 		{
-			facade.registerMediator(new GameOverMediator());
-			(facade.retrieveProxy(UserProxy.NAME) as UserProxy).addScore();
+			var score:int = (facade.retrieveProxy(UserProxy.NAME) as UserProxy).user.score;
 			
+			facade.registerMediator(new GameOverMediator(score));
 		}
 	}
 }

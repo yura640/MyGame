@@ -31,8 +31,12 @@ package view.components
 		}
 		public function upScore(rezultat:int):void{
 			
-			(content["score"] as TextField).text = "РЕЗУЛЬТАТ : " +  rezultat ; 
-			
+			(content["score"] as TextField).text = "SCORE : " +  rezultat ; 
 		}
+		
+		public function upTimer(timer:int):void{
+			
+			(content["gameTimer"] as TextField).text = " TIME : "+" " + timer; 
 	}
+}
 }

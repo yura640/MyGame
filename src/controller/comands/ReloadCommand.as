@@ -2,6 +2,7 @@ package controller.comands
 {
 	import config.GeneralNotification;
 	
+	import model.proxy.GameProxy;
 	import model.proxy.UserProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -19,7 +20,7 @@ package controller.comands
 			facade.removeMediator(GamePlayMediator.NAME);
 			facade.removeMediator(ScoreMediator.NAME);
 			sendNotification(GeneralNotification.GAME_IS_LOADED);
-			
+			(facade.retrieveProxy(UserProxy.NAME) as UserProxy).user.score = 0;
 			
 		}
 	}

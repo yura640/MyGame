@@ -10,6 +10,9 @@ package model.proxy
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
+	import model.dto.GameDTO;
+	
+	import org.osmf.events.TimeEvent;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import utils.WareHouse;
@@ -18,32 +21,53 @@ package model.proxy
 	{
 		public var removeEnemietimer:Timer;
 		public var timer:Timer;
+		public var gameTimer:Timer;
 		public static const NAME:String = "GameProxy";
+		public var dif:int = 30;
 		
-		public function GameProxy()
+		public function GameProxy(proxyName:String=null, data:Object=null)
 		{
-			super(NAME);
-		}
-		public function start():void
-		{
-			setTimeout(gameOver, 10000);
-		}
-		public function gameOver():void
-		{
-			sendNotification("gameOverCommand");
+			super(NAME, new GameDTO());
 		}
 		
+		public function get game():GameDTO{ 
+			return getData() as GameDTO;
+		}
+		public function startGameTimer(dif:int):void
+		{
+			gameTimer = new Timer(1000,dif);
+			gameTimer.start();
+			gameTimer.addEventListener(TimerEvent.TIMER, oneSecond);	
+		}
+			public function oneSecond(event:TimerEvent):void
+			{	
+				dif = gameTimer.repeatCount - gameTimer.currentCount;
+				sendNotification("timer",dif);
+				if (dif == 0){
+					sendNotification(GeneralNotification.GAME_OVER_COMMAND);
+					
+				}	
+			}
+			
+			public function resetGameTimer():void
+			{
+				gameTimer.stop();
+				gameTimer.repeatCount = dif + 5;
+				startGameTimer(gameTimer.repeatCount);
+			}
 		
 		public function startGame():void{
 			
-			timer = new Timer(1200,10);
+			timer = new Timer(1200,25);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
-			start();
+			startGameTimer(dif);
+			
 		}
 			
 			private function onTimer(event:TimerEvent):void{
 			sendNotification(GeneralNotification.GENERATE_ENEMI_AND_CELL);
+			
 		}
 			
 		public function removeEnemie():void{

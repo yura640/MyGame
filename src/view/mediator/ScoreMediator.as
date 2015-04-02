@@ -26,14 +26,16 @@ package view.mediator
 			super(NAME, new ScoreViewLogic());
 		}
 		override public function listNotificationInterests():Array{
-			return [GeneralNotification.CHANGE_SCORE];
+			return [GeneralNotification.CHANGE_SCORE,"timer"];
 		}
 		override public function handleNotification(notification:INotification):void{
 			
 			switch(notification.getName()){
 				case GeneralNotification.CHANGE_SCORE:
 					scoreViewLogic.upScore(notification.getBody() as int);
-					break;		
+					break;
+				case "timer":
+					scoreViewLogic.upTimer(notification.getBody() as int);
 		}
 		}
 			private function get scoreViewLogic():ScoreViewLogic{

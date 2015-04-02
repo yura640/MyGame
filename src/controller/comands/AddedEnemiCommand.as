@@ -11,6 +11,7 @@ package controller.comands
 			var neededCell:int = Math.floor(Math.random()*10);
 			var neededSepar:int = (Math.floor(Math.random()*3)+1);
 			sendNotification(GeneralNotification.PUSH_ENEMI_ON_CELL, {cell:neededCell, separ:neededSepar});
+			
 		}
 	}
 }

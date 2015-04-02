@@ -38,7 +38,9 @@ package config
 		public static const DELL_BONUS_RESET_TIMER_COMMAND:String = "udalitBonusLable&ResetTimer";
 		public static const REMOVE_CURENT_BONUS:String = "removeCurentBonus";
 		public static const REMOVE_CURENT_BONUS_COMMAND:String = "remCurentBonusCommand";
-		
+		public static const GAME_OVER_COMMAND:String = "gameOverCommand";
+		public static const TO_MAKE_RELOAD_COMMAND:String = "toMakeReloadCommand";
+		public static const RETURN_COMMAND:String = "returnCommand";
 		//public static const 
 	}
 }

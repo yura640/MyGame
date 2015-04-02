@@ -4,6 +4,8 @@ package view.mediator
 	
 	import flash.events.Event;
 	
+	import model.proxy.UserProxy;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	
 	import view.components.GameOverViewLogic;
@@ -11,30 +13,22 @@ package view.mediator
 	public class GameOverMediator extends UIMediator
 	{
 		public static const NAME:String = "GameOverMediator";
+		 
 		
-		public function GameOverMediator(mediatorName:String=null, viewComponent:Object=null)
+		public function GameOverMediator(score:int)
 		{
-			super(NAME, new GameOverViewLogic());
-			gameOverViewLogic.addEventListener("returnCommand", toMakeReloadCommand);
+			super(NAME, new GameOverViewLogic(score));
+			
+			gameOverViewLogic.addEventListener(GeneralNotification.RETURN_COMMAND, toMakeReloadCommand);
+			
 		}
 		private function get gameOverViewLogic():GameOverViewLogic{
 			return viewComponent as GameOverViewLogic;
 		}
 		public function toMakeReloadCommand(e:Event):void
 		{
-			sendNotification("toMakeReloadCommand"); 
+			sendNotification(GeneralNotification.TO_MAKE_RELOAD_COMMAND); 
 		}
-		override public function listNotificationInterests():Array{
-			return [GeneralNotification.CHANGE_SCORE];
-		}
-		override public function handleNotification(notification:INotification):void{
-			
-			switch(notification.getName()){
-				case GeneralNotification.CHANGE_SCORE:
-					gameOverViewLogic.upScore(notification.getBody() as int);
-					break;		
-			}
-		}
-		
+
 	}
 }
