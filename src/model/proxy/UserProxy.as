@@ -42,29 +42,41 @@ package model.proxy
 				 mySo.data[user.name].name = user.name;
 				 mySo.data[user.name].score = user.score;
 				// trace (user.name + "1");
+				 mySo.flush();
 			 }
 			 if (mySo.data[user.name] == null){
 				 mySo.data[user.name] = new Object();
 				 mySo.data[user.name].name = user.name;
 				 mySo.data[user.name].score = user.score;
 				// trace (user.name + "2");
+				 mySo.flush();
 			 } else {
 				 mySo.data[user.name].score = user.score;
-				 //trace (user.name + "3");
+				// trace (user.name + "3");
+				 mySo.flush();
 			 }
-			 
-			var arrOfNamesAndScores:Array = new Array();
-			arrOfNamesAndScores.push(mySo.data[user.name].name,  mySo.data[user.name].score);
-			arrOfNamesAndScores.sortOn("score", Array.DESCENDING | Array.NUMERIC)
-				trace (arrOfNamesAndScores);
-				
-				sendNotification("myDto", arrOfNamesAndScores);
+			 addScoreAndNameToArray();
 		}
+
+			public function addScoreAndNameToArray():void
+				{
+				var arrOfNamesAndScores:Array = new Array();
+				for each(var obj:Object in mySo.data){
+					try {
+						arrOfNamesAndScores.push({name:obj.name as String, score:obj.score as int});
+						arrOfNamesAndScores.sortOn("score", Array.DESCENDING | Array.NUMERIC);
+						//trace (arrOfNamesAndScores);
+					}
+					catch (error:Error) {
+						mySo.data.name;
+					}
+					sendNotification("myDto", arrOfNamesAndScores);
+		}
+				}		
 //		public function sendDto ():void
 //		{
 //			sendNotification("myDto", UserDto);
 		
 //		}
 	}
-	
-}
+	}

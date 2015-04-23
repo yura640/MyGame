@@ -8,6 +8,7 @@ package view.components
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.sendToURL;
 	import flash.text.TextField;
 	
 	import flashx.textLayout.accessibility.TextAccImpl;
@@ -45,11 +46,9 @@ package view.components
 		
 		public function onOK(e:MouseEvent):void
 		{
-			if (user !== null){
-			userName = user.text;
-			} else trace ("asdasdasd");
-			
+			userName = user.text;	
 			dispatchEvent(new EventTrans ("addName", userName));
+			
 		}
 		 public function onClickStartBtn(event:MouseEvent):void{
 			 dispatchEvent(new Event(GeneralNotification.START_BTN_CLICKED)); 

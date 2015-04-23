@@ -2,6 +2,7 @@ package view.components
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
+	import flash.sampler.getInvocationCount;
 	import flash.text.TextField;
 	
 	import model.dto.UserDto;
@@ -18,7 +19,9 @@ package view.components
 		{
 			for (var i:int = 0; i<10; i++){
 				var obj:Object = scoreDto[i];
-				(content["scoreText_"+i] as TextField).text = obj.name,  obj.score;
+				(content["scoreText_"+i] as TextField).text = obj.name as String;
+				//trace (obj.name as String);
+				break;
 			}
 		}
 			 
