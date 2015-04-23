@@ -10,6 +10,7 @@ package controller.comands
 	import flash.utils.setTimeout;
 	
 	import model.proxy.BonusProxy;
+	import model.proxy.EnemieProxy;
 	import model.proxy.GameProxy;
 	import model.proxy.UserProxy;
 	
@@ -34,25 +35,25 @@ package controller.comands
 			
 			facade.registerCommand(GeneralNotification.LOAD_GAME, LoadGameComand);
 			facade.registerCommand(GeneralNotification.GAME_IS_LOADED, StartLobbyComand);
+			facade.registerCommand("onClickOnHighScoreBtn", OpenHighScoreCommand);
+			facade.registerCommand("addNameCommand", AddNameCommand);
 			facade.registerCommand(GeneralNotification.START_THE_GAME, StartLevelComand);
-			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand);
-			facade.registerCommand(GeneralNotification.TARGET_IS_ADDED, RemoveEnemieCommand); 
-			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE,KillingEnemieCommand);	
-			facade.registerCommand(GeneralNotification.TO_MAKE_BONUS_LABLE, BonusStartCommand);
-			facade.registerCommand(GeneralNotification.RESET_TIMER, ResetTimerCommand);
+			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand); 
+			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE, KillingEnemieCommand);	
 			facade.registerCommand(GeneralNotification.RESET_SCORE, ChangeScoreCommand);
-			facade.registerCommand(GeneralNotification.REMOVE_CURENT_BONUS_COMMAND,RemoveCurentBonusCommand);
+			facade.registerCommand(GeneralNotification.REMOVE_CURENT_BONUS_COMMAND, RemoveCurentBonusCommand);
 			facade.registerCommand(GeneralNotification.DELL_BONUS_LABLE_COMMAND, BonusLableRemoveCommand);
 			facade.registerCommand(GeneralNotification.ADD_BONUS_TO_STAGE, AddBonusCommand);
 			facade.registerCommand(GeneralNotification.DELL_BONUS_RESET_TIMER_COMMAND, RemoveBonusLableResetTimerCommand);
-			facade.registerCommand(GeneralNotification.REMOVE_TARGET_BY_RED_BTN, RemoveTargetByRedBtnCommand);
+			facade.registerCommand(GeneralNotification.REMOVE_TARGET_BY_RED_BTN, KillingEnemieByBtnCommand);
 			facade.registerCommand(GeneralNotification.GAME_OVER_COMMAND, GameOverCommand);
 			facade.registerCommand(GeneralNotification.TO_MAKE_RELOAD_COMMAND, ReloadCommand);
+			
 			facade.registerMediator( new RootMediator(rootSprite));
 			facade.registerProxy(new UserProxy());
 			facade.registerProxy(new GameProxy());
 			facade.registerProxy(new BonusProxy());
-			
+			facade.registerProxy( new EnemieProxy());
 			sendNotification(GeneralNotification.LOAD_GAME);
 		}
 	}

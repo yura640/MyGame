@@ -1,5 +1,7 @@
 package view.components
 {
+	import config.GeneralNotification;
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
@@ -8,6 +10,8 @@ package view.components
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	
+	import model.dto.EnemieDto;
 	
 	import mx.core.ButtonAsset;
 	
@@ -18,13 +22,22 @@ package view.components
 	{
 		public var currentTarget:DisplayObject;
 	
-		
-		public function TargetVievLogic(neededSepar1:int)
+		public function TargetVievLogic(incomingDto:EnemieDto)
 		{
 			super();
-			currentTarget = WareHouse.getInstance().getAsset("vrag_"+neededSepar1) as SimpleButton;
+		
+			currentTarget = WareHouse.getInstance().getAsset("vrag_"+incomingDto.enemieiID) as SimpleButton;
 			
-		}	
-	
+			incomingDto.visualEnemie = currentTarget;
+			
+			currentTarget.addEventListener(MouseEvent.CLICK, clockOnEnemie);
+		
+		}
+		public function clockOnEnemie (e:MouseEvent):void
+		{
+			dispatchEvent(new EventTrans (GeneralNotification.PUSH_ON_ENEMIE, currentTarget) );
+		
+		}
 	}
-}
+	}
+

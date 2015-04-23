@@ -4,6 +4,8 @@ package view.mediator
 	
 	import flash.events.Event;
 	
+	import utils.EventTrans;
+	
 	import view.components.LobbyViewLogic;
 
 	public class LobbyMediator extends UIMediator
@@ -14,10 +16,19 @@ package view.mediator
 		{
 			super(NAME, new LobbyViewLogic());
 			viewComponent.addEventListener(GeneralNotification.START_BTN_CLICKED, btnClicked);
+			viewComponent.addEventListener("addName", addName);
+			viewComponent.addEventListener("clickOnHighScoreBtn", onClickOnHighScoreBtn);
+		}
+		public function addName (e:EventTrans):void
+		{
+			sendNotification("addNameCommand", e.data);
 		}
 		public function btnClicked(event:Event):void{
 			sendNotification(GeneralNotification.START_THE_GAME);
-			
+		}
+		public function onClickOnHighScoreBtn (e:Event):void
+		{
+			sendNotification("onClickOnHighScoreBtn");
 		}
 	}
 }

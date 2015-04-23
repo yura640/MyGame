@@ -9,8 +9,9 @@ package model.proxy
 	
 	public class BonusProxy extends Proxy
 	{
-		public var timer:Timer;
+		public var timerBonusLable:Timer;
 		public var lableTimer:Timer;
+		public var timerDellBonusLable:Timer;
 		
 		public static const NAME:String = "BonusProxy";
 		public function BonusProxy()
@@ -18,9 +19,9 @@ package model.proxy
 			super(NAME);
 		}
 		public function addBonusLable():void{
-			timer = new Timer(4000,1);
-			timer.addEventListener(TimerEvent.TIMER, onTimer);
-			timer.start();
+			timerBonusLable = new Timer(10000);
+			timerBonusLable.addEventListener(TimerEvent.TIMER, onTimer);
+			timerBonusLable.start();
 		}
 		
 		private function onTimer(event:TimerEvent):void{
@@ -39,20 +40,16 @@ package model.proxy
 			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
 		}
 		
-		public function addCurentBonus():void
-		{
-			sendNotification(GeneralNotification.ADD_CURENT_BONUS);	
-		}
 		public function resetLableTimer():void
 		{
-			lableTimer.reset();
+			lableTimer.stop();
 		}
 		
 		public function remCurentBonus():void
 		{
-			timer = new Timer(4000,1);
-			timer.addEventListener(TimerEvent.TIMER, onTimerOff);
-			timer.start();
+			timerDellBonusLable = new Timer(4000,1);
+			timerDellBonusLable.addEventListener(TimerEvent.TIMER, onTimerOff);
+			timerDellBonusLable.start();
 		}
 		public function onTimerOff(e:TimerEvent):void
 		{

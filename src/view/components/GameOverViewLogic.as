@@ -30,12 +30,13 @@ package view.components
 			return content as Sprite;
 		}	
 		
-		public function initBtns():void{
-			
+		public function initBtns():void
+		{
 			gameOverScore = gameOverContent["gameOver_score"];
 			returnBtn = gameOverContent ["return_BTN"];
 			returnBtn.addEventListener(MouseEvent.CLICK, onClickReturnBtn);
 		}
+		
 		public function onClickReturnBtn(event:MouseEvent):void{
 			dispatchEvent(new Event(GeneralNotification.RETURN_COMMAND)); 
 		}

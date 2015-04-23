@@ -14,13 +14,10 @@ package view.mediator
 	{
 		public static const NAME:String = "GameOverMediator";
 		 
-		
 		public function GameOverMediator(score:int)
 		{
 			super(NAME, new GameOverViewLogic(score));
-			
 			gameOverViewLogic.addEventListener(GeneralNotification.RETURN_COMMAND, toMakeReloadCommand);
-			
 		}
 		private function get gameOverViewLogic():GameOverViewLogic{
 			return viewComponent as GameOverViewLogic;

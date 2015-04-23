@@ -2,19 +2,29 @@ package controller.comands
 {
 	import config.GeneralNotification;
 	
+	import flash.display.DisplayObject;
 	import flash.net.sendToURL;
 	
+	import model.proxy.EnemieProxy;
 	import model.proxy.GameProxy;
 	import model.proxy.UserProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	import view.components.TargetVievLogic;
+	import view.mediator.GamePlayMediator;
+	
 	public class KillingEnemieCommand extends SimpleCommand
 	{
 		override public function execute(notification:INotification):void
 		{
-			sendNotification(GeneralNotification.REMOVE_ENEMIE);
+			var enemi:DisplayObject = notification.getBody() as DisplayObject;
+				
+			(facade.retrieveProxy(EnemieProxy.NAME) as EnemieProxy).removeEnemie(enemi);
+			}
 		}
 	}
-}
+
+
+	

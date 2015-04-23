@@ -11,8 +11,8 @@ package controller.comands
 	{
 		override public function execute(notification:INotification):void
 		{
-			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
-			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
+//			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+//			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
 		}
 	}
 }

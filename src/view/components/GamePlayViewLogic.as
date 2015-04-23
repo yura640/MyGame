@@ -7,12 +7,17 @@ package view.components
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
+	import flash.display.Stage;
+	import flash.events.DataEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.net.drm.VoucherAccessInfo;
+	import flash.utils.Endian;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
+	
+	import model.dto.EnemieDto;
 	
 	import utils.EventTrans;
 	import utils.WareHouse;
@@ -23,18 +28,14 @@ package view.components
 	{	
 		public var cells:Vector.<MovieClip>;
 		public var target:TargetVievLogic;
-		//public var newTarget:TargetVievLogic;
-		public var redBtn:RedBtnViewLigic;
-		public var lableVL:RedBtnViewLigic;
-		public var timer:Timer;
-		public var neededCell1:int;
-		public var neededSepar1:int;
-		public var curentTarget:DisplayObject;
+		public var redBtn:BonusViewLigic;
+		public var bonusLable:BonusViewLigic;
+		
+		public var returnBtn:SimpleButton;
 		
 		public function GamePlayViewLogic()
 		{
 			super(WareHouse.getInstance().getAsset('www_1') as MovieClip);
-		
 			initAllCellsAndTarget();
 		}
 		private function initAllCellsAndTarget():void{
@@ -45,83 +46,98 @@ package view.components
 				cells.push(content['circle_'+counter]);
 				counter++;
 			}
-
+			initBtns();
 		}
-		
-		public function addTargetToRandomCell(neededCell:int, neededSepar:int):void{
-			neededCell1 = neededCell;
-			neededSepar1 = neededSepar;
-			target = new TargetVievLogic(neededSepar1);
-			
-			cells[neededCell1].addChild(target.currentTarget);
-			
-			target.currentTarget.addEventListener(MouseEvent.CLICK, onClickOnTarget);
+		public function addTargetToRandomCell(incomingDto:EnemieDto):void
+		{
+			target = new TargetVievLogic(incomingDto);
+			if (cells[incomingDto.cellID].getChild == null){
+			cells[incomingDto.cellID].addChild(target.currentTarget);
+			target.addEventListener(GeneralNotification.PUSH_ON_ENEMIE , onClickOnTarget);
+			}
 		}
-			
-		public function onClickOnTarget(e:MouseEvent):void
+		public function onClickOnTarget(a:EventTrans):void
 			{
-				dispatchEvent(new Event(GeneralNotification.ON_CLICK_ON_TARGET));
+				dispatchEvent(new EventTrans(GeneralNotification.ON_CLICK_ON_TARGET, a.data));
 			}
-
-		public function removeEnemie():void
-		{		
-			if (target.currentTarget.parent != null){
-				
-			cells[neededCell1].removeChild(target.currentTarget);
-			dispatchEvent(new Event(GeneralNotification.RESET_SCORE_AND_TIMER));
-			
+		private function get gameContent():Sprite{
+				return content as Sprite;
+			}	
+		public function initBtns():void
+			{
+			returnBtn = gameContent["ret_Btn"];
+			returnBtn.addEventListener(MouseEvent.CLICK, onClickReturnBtn);
 			}
+		public function onClickReturnBtn(event:MouseEvent):void
+			{
+			dispatchEvent(new Event(GeneralNotification.RETURN_COMMAND)); 
+			}
+		public function removeEnemie(incomingDto:EnemieDto):void
+			{		
+			if (incomingDto.visualEnemie.parent !== null){
+			incomingDto.visualEnemie.parent.removeChild(incomingDto.visualEnemie);
+			if (incomingDto.enemieiID ==1){
+			dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, 1));
+			}if (incomingDto.enemieiID ==2){
+				dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, 2));
+			}if (incomingDto.enemieiID ==3){
+				dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, 3));
+				}
+			}		
 		}
-		
-		public function removeEnemieByTimer():void
-		{		
-			if (target.currentTarget.parent != null){
-				
-				cells[neededCell1].removeChild(target.currentTarget);
-			
-			}
+		public function removeEnemieByTimer(incomingRemDto:DisplayObject):void
+		{	
+			if (incomingRemDto.parent != null){
+			incomingRemDto.parent.removeChild(incomingRemDto);
+			}	
 		}
-		
+		public function addBonusSeconds():void
+		{
+			redBtn = new BonusViewLigic();
+			content.addChild(redBtn.bonusSeconds);
+			redBtn.bonusSeconds.x = 330;
+			redBtn.bonusSeconds.y = 100;
+		}
 		public function addRedBtn():void
 		{
-			redBtn = new RedBtnViewLigic();
-			content.addChild(redBtn.btn);
-			redBtn.btn.x = 300;
-			redBtn.btn.y = 280;
-			redBtn.btn.addEventListener(MouseEvent.CLICK, onClickOnRedBtn);
+			redBtn = new BonusViewLigic();
+			content.addChild(redBtn.redBtn);
+			redBtn.redBtn.x = 300;
+			redBtn.redBtn.y = 280;
+			redBtn.redBtn.addEventListener(MouseEvent.CLICK, onClickOnRedBtn);
 		}
 		public function onClickOnRedBtn(e:MouseEvent):void
 		{
-			dispatchEvent(new Event(GeneralNotification.ON_CLICK_ON_RED_BTN));
+			var ellow:int = 2;
+			var green:int = 3;
+			dispatchEvent(new EventTrans(GeneralNotification.ON_CLICK_ON_RED_BTN, green));
+			dispatchEvent(new EventTrans(GeneralNotification.ON_CLICK_ON_RED_BTN, ellow));
 		}
-		
 		public function addbonusLable():void
 		{
-			lableVL = new RedBtnViewLigic();
-			content.addChild(lableVL.lableRedBtn);
-			lableVL.lableRedBtn.x = 415;
-			lableVL.lableRedBtn.y = 60;
-			lableVL.lableRedBtn.addEventListener(MouseEvent.CLICK, onClickOnLable);
+			bonusLable = new BonusViewLigic();
+			content.addChild(bonusLable.lableRedBtn);
+			bonusLable.lableRedBtn.x = 415;
+			bonusLable.lableRedBtn.y = 60;
+			bonusLable.lableRedBtn.addEventListener(MouseEvent.CLICK, onClickOnLable);
 		}
-		
 		public function remBonusLable():void
 		{
-			content.removeChild(lableVL.lableRedBtn);
-			lableVL.lableRedBtn.removeEventListener(MouseEvent.CLICK, onClickOnLable);
+			if (bonusLable.lableRedBtn.parent !== null){
+			content.removeChild(bonusLable.lableRedBtn);
+			bonusLable.lableRedBtn.removeEventListener(MouseEvent.CLICK, onClickOnLable);
+			}
 		}
-		
 		public function onClickOnLable(e:MouseEvent):void
 		{
 			dispatchEvent(new Event(GeneralNotification.ON_CLICK_ON_LABLE));
 		}
 		public function remCurentBonus():void
 		{
-			content.removeChild(redBtn.btn);
-			redBtn.btn.removeEventListener(MouseEvent.CLICK, onClickOnRedBtn);
+			content.removeChild(redBtn.redBtn);
+			redBtn.redBtn.removeEventListener(MouseEvent.CLICK, onClickOnRedBtn);
 		}
-			
 	}
-		
 }		
 //		target.addEventListener("clickOnTarget", delEnemie);
 //		

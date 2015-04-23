@@ -20,7 +20,7 @@ package config
 		public static const CLICK_ON_ENEMIE:String = "killEnemie";
 		public static const ON_CLICK_ON_TARGET:String = "onClickOnTarget";
 		public static const START_BTN_CLICKED:String = "startBtnClicked";
-		public static const TO_MAKE_BONUS_LABLE:String = "sozdatBonusLable";
+		
 		public static const DELL_ENI_TARGET:String = "ydalitTargetOtRedBtn";
 		public static const ADD_RED_BTN:String = "addRedButton";
 		public static const ADD_BONUS_LABLE:String = "addBonusLable";
@@ -41,6 +41,10 @@ package config
 		public static const GAME_OVER_COMMAND:String = "gameOverCommand";
 		public static const TO_MAKE_RELOAD_COMMAND:String = "toMakeReloadCommand";
 		public static const RETURN_COMMAND:String = "returnCommand";
+		public static const ADD_BONUS_SEC:String = "addTenSec";
+		public static const PUSH_ON_ENEMIE:String = "clockOnEnemie";
+		public static const VIZUAL_TIMER:String = "timer";
+		
 		//public static const 
 	}
 }

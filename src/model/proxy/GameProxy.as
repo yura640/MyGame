@@ -23,7 +23,7 @@ package model.proxy
 		public var timer:Timer;
 		public var gameTimer:Timer;
 		public static const NAME:String = "GameProxy";
-		public var dif:int = 30;
+		public var dif:int;
 		
 		public function GameProxy(proxyName:String=null, data:Object=null)
 		{
@@ -33,56 +33,57 @@ package model.proxy
 		public function get game():GameDTO{ 
 			return getData() as GameDTO;
 		}
+		
+		public function startGame():void
+		{
+			timer = new Timer(700);
+			timer.addEventListener(TimerEvent.TIMER, onTimer);
+			timer.start();
+			startGameTimer(60);
+		}
+		
+		private function onTimer(event:TimerEvent):void
+		{
+			sendNotification(GeneralNotification.GENERATE_ENEMI_AND_CELL);
+		}
+		
 		public function startGameTimer(dif:int):void
 		{
 			gameTimer = new Timer(1000,dif);
 			gameTimer.start();
 			gameTimer.addEventListener(TimerEvent.TIMER, oneSecond);	
 		}
-			public function oneSecond(event:TimerEvent):void
+		
+		public function oneSecond(event:TimerEvent):void
 			{	
 				dif = gameTimer.repeatCount - gameTimer.currentCount;
-				sendNotification("timer",dif);
+				sendNotification(GeneralNotification.VIZUAL_TIMER,dif);
 				if (dif == 0){
-					sendNotification(GeneralNotification.GAME_OVER_COMMAND);
-					
+				sendNotification(GeneralNotification.GAME_OVER_COMMAND);	
 				}	
 			}
 			
-			public function resetGameTimer():void
+		public function resetGameTimer():void
 			{
 				gameTimer.stop();
-				gameTimer.repeatCount = dif + 5;
+				gameTimer.repeatCount = dif + 10;
 				startGameTimer(gameTimer.repeatCount);
 			}
 		
-		public function startGame():void{
-			
-			timer = new Timer(1200,25);
-			timer.addEventListener(TimerEvent.TIMER, onTimer);
-			timer.start();
-			startGameTimer(dif);
-			
-		}
-			
-			private function onTimer(event:TimerEvent):void{
-			sendNotification(GeneralNotification.GENERATE_ENEMI_AND_CELL);
-			
-		}
-			
-		public function removeEnemie():void{
+		public function removeEnemie():void
+		{
 			removeEnemietimer = new Timer(800,1);
-			
 			removeEnemietimer.addEventListener(TimerEvent.TIMER, timerDown);
 			removeEnemietimer.start(); 
 		}
-		public function timerDown(event:TimerEvent):void{
+		
+		public function timerDown(event:TimerEvent):void
+		{
 			sendNotification(GeneralNotification.REMOVE_ENEMIE_BY_TIMER);
-			
 		}
+		
 		public function timerReset():void{
 			removeEnemietimer.reset();
-			
 		}
 	}
 }

@@ -2,10 +2,13 @@ package view.mediator
 {
 	import config.GeneralNotification;
 	
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	
+	import model.dto.EnemieDto;
 	
 	import org.osmf.events.DisplayObjectEvent;
 	import org.puremvc.as3.interfaces.INotification;
@@ -28,56 +31,54 @@ package view.mediator
 			viewComponent.addEventListener(GeneralNotification.RESET_SCORE_AND_TIMER, resetScoreAndTimer);
 			viewComponent.addEventListener(GeneralNotification.ON_CLICK_ON_LABLE, addBonusToStage);
 			viewComponent.addEventListener(GeneralNotification.ON_CLICK_ON_RED_BTN, removeTargetByRedBtn);
+			viewComponent.addEventListener(GeneralNotification.RETURN_COMMAND, toMakeReloadCommand);
+			
 		}
-		public function removeTargetByRedBtn (e:Event):void
+		public function toMakeReloadCommand(e:Event):void
 		{
-			sendNotification(GeneralNotification.REMOVE_TARGET_BY_RED_BTN);
+			sendNotification(GeneralNotification.TO_MAKE_RELOAD_COMMAND);
+		}
+		public function removeTargetByRedBtn (e:EventTrans):void
+		{
+			sendNotification(GeneralNotification.REMOVE_TARGET_BY_RED_BTN, e.data);
 		}
 		
 		public function addBonusToStage(e:Event):void
 		{
 			sendNotification(GeneralNotification.ADD_BONUS_TO_STAGE);
-			sendNotification(GeneralNotification.DELL_BONUS_RESET_TIMER_COMMAND);
-			
+			//sendNotification(GeneralNotification.DELL_BONUS_RESET_TIMER_COMMAND);
 		}
 		
-		public function resetScoreAndTimer(a:Event):void
+		public function resetScoreAndTimer(a:EventTrans):void
 		{
-			sendNotification(GeneralNotification.RESET_SCORE);
-			sendNotification(GeneralNotification.RESET_TIMER);
+			sendNotification(GeneralNotification.RESET_SCORE, a.data);
 		}
-		
-		public function removeEnemie(e:Event):void{
-			sendNotification(GeneralNotification.CLICK_ON_ENEMIE);
-			
-				
+		public function removeEnemie(e:EventTrans):void{
+			sendNotification(GeneralNotification.CLICK_ON_ENEMIE, e.data);
 		}	
 		private function get startViewLogic():GamePlayViewLogic{
 			return viewComponent as GamePlayViewLogic;
 		}		
-		
-		
 		override public function listNotificationInterests():Array{
 			return [GeneralNotification.PUSH_ENEMI_ON_CELL, GeneralNotification.REMOVE_ENEMIE,
 				GeneralNotification.REMOVE_ENEMIE_BY_TIMER, GeneralNotification.ADD_BONUS_LABLE, GeneralNotification.DELL_BONUS_LABLE,
-				GeneralNotification.ADD_CURENT_BONUS, GeneralNotification.REMOVE_CURENT_BONUS,];
+				GeneralNotification.ADD_CURENT_BONUS, GeneralNotification.REMOVE_CURENT_BONUS, GeneralNotification.ADD_BONUS_SEC];
 		}
-		
 		override public function handleNotification(notification:INotification):void{
 			switch(notification.getName()){
 				case GeneralNotification.PUSH_ENEMI_ON_CELL:
-					var neededCell:int = notification.getBody().cell as int;
-					var neededSepar:int = notification.getBody().separ as int;
-					startViewLogic.addTargetToRandomCell(neededCell, neededSepar);
-					sendNotification(GeneralNotification.TARGET_IS_ADDED);
+					var incomingDto:EnemieDto = notification.getBody() as EnemieDto;
+					startViewLogic.addTargetToRandomCell(incomingDto);
 					break;
 				
 				case GeneralNotification.REMOVE_ENEMIE:
-					startViewLogic.removeEnemie();
+					var incomingDellDto:EnemieDto = notification.getBody() as EnemieDto;
+					startViewLogic.removeEnemie(incomingDellDto);
 					break;
 				
 				case GeneralNotification.REMOVE_ENEMIE_BY_TIMER:
-					startViewLogic.removeEnemieByTimer();
+					var incomingRemDto:DisplayObject = notification.getBody() as DisplayObject;
+					startViewLogic.removeEnemieByTimer(incomingRemDto);
 					break;
 				
 				case GeneralNotification.ADD_BONUS_LABLE:
@@ -93,15 +94,17 @@ package view.mediator
 					startViewLogic.addRedBtn();
 					sendNotification(GeneralNotification.REMOVE_CURENT_BONUS_COMMAND);
 					break;
+				
 				case GeneralNotification.REMOVE_CURENT_BONUS:
 					startViewLogic.remCurentBonus();
 					break;
-				}
-			
-			
-		}
 				
-	}
+				case GeneralNotification.ADD_BONUS_SEC:
+					startViewLogic.addBonusSeconds();
+					break;
+				}
+			}		
+		}
 }
 		
 		

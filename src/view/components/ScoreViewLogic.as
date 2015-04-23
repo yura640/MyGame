@@ -26,11 +26,9 @@ package view.components
 		public function ScoreViewLogic()
 		{
 			super(WareHouse.getInstance().getAsset('panel_1') as MovieClip);
-			//super (new Sprite());
-			
 		}
-		public function upScore(rezultat:int):void{
-			
+		public function upScore(rezultat:int):void
+		{
 			(content["score"] as TextField).text = "SCORE : " +  rezultat ; 
 		}
 		
