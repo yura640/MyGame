@@ -39,7 +39,12 @@ package model.proxy
 			timer = new Timer(700);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);
 			timer.start();
-			startGameTimer(60);
+			startGameTimer(15);
+		}
+		public function timerStop():void
+		{
+			timer.stop();
+			gameTimer.stop();
 		}
 		
 		private function onTimer(event:TimerEvent):void

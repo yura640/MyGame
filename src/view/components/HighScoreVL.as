@@ -2,6 +2,9 @@ package view.components
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
+	import flash.display.SimpleButton;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.sampler.getInvocationCount;
 	import flash.text.TextField;
 	
@@ -14,16 +17,29 @@ package view.components
 		public function HighScoreVL()
 		{
 			super(WareHouse.getInstance().getAsset('scoreBord_1') as MovieClip);
+			initBtns();
 		}
 		public function addResultsOnScoreBord(scoreDto:Array):void
-		{
-			for (var i:int = 0; i<10; i++){
+		{		for (var i:int = 0; i<scoreDto.length; i++){
+			if ((content["scoreText_"+i] as TextField) == null){
+				scoreDto.splice((content["scoreText_"+scoreDto.length] as TextField));
+			} else {
 				var obj:Object = scoreDto[i];
-				(content["scoreText_"+i] as TextField).text = obj.name as String;
-				//trace (obj.name as String);
-				break;
+				(content["scoreText_"+i] as TextField).text = i+1 + "." + "  " + obj.name + "Score:" as String;
 			}
+			}
+			}
+		public function initBtns():void
+		{
+			var returnBtn:SimpleButton = content["returnBtn"] as SimpleButton;
+			returnBtn.addEventListener(MouseEvent.CLICK, onClickOnReturnBtn);
 		}
+		public function onClickOnReturnBtn(e:MouseEvent):void
+		{
+			dispatchEvent( new Event("onClickOnReturnBtn"));
+		}
+			}
+			}
+		
 			 
-	}
-}
+	

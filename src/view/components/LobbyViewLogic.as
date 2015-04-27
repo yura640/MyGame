@@ -36,22 +36,20 @@ package view.components
 		public function initBtns():void{
 			
 			user = lobbyContent["userName1"] as TextField;
-			highScoreBtn = lobbyContent ["highScBtn"];
+			highScoreBtn = lobbyContent["highScBtn"];
 			highScoreBtn.addEventListener(MouseEvent.CLICK, onClickHighScoreBtn);
-			ok = lobbyContent["okay"];
-			ok.addEventListener(MouseEvent.CLICK, onOK);
+			//ok = lobbyContent["okay"];
+			//ok.addEventListener(MouseEvent.CLICK, onOK);
 			startBtm = lobbyContent["startBtm1"];
 			startBtm.addEventListener(MouseEvent.CLICK, onClickStartBtn);
 		}	
 		
-		public function onOK(e:MouseEvent):void
-		{
-			userName = user.text;	
-			dispatchEvent(new EventTrans ("addName", userName));
 			
-		}
+		
 		 public function onClickStartBtn(event:MouseEvent):void{
 			 dispatchEvent(new Event(GeneralNotification.START_BTN_CLICKED)); 
+			 userName = user.text;	
+			 dispatchEvent(new EventTrans ("addName", userName));
 		 }
 		 public function onClickHighScoreBtn(e:MouseEvent):void
 		 {

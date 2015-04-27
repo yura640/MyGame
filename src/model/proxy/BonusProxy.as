@@ -42,7 +42,9 @@ package model.proxy
 		
 		public function resetLableTimer():void
 		{
-			lableTimer.stop();
+			if(lableTimer.running){
+			lableTimer.reset();
+			}
 		}
 		
 		public function remCurentBonus():void
@@ -55,7 +57,9 @@ package model.proxy
 		{
 			sendNotification(GeneralNotification.REMOVE_CURENT_BONUS);
 		}
+		
+		}
 		}
 	
-	}
+	
 	

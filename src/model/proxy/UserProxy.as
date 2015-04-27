@@ -34,11 +34,11 @@ package model.proxy
 		}
 		public function sharedObject():void
 		{
-			 mySo = SharedObject.getLocal("mySharedObject1");
+			 mySo = SharedObject.getLocal("mySharedObject6");
 			
 			 if (mySo.data == null) {
 				 mySo.data[user.name] = new Object();
-				 mySo.data.name = "mySharedObject1";
+				 mySo.data.name = "mySharedObject6";
 				 mySo.data[user.name].name = user.name;
 				 mySo.data[user.name].score = user.score;
 				// trace (user.name + "1");
@@ -59,7 +59,7 @@ package model.proxy
 		}
 
 			public function addScoreAndNameToArray():void
-				{
+				{ if (mySo !== null){
 				var arrOfNamesAndScores:Array = new Array();
 				for each(var obj:Object in mySo.data){
 					try {
@@ -70,6 +70,7 @@ package model.proxy
 					catch (error:Error) {
 						mySo.data.name;
 					}
+				}
 					sendNotification("myDto", arrOfNamesAndScores);
 		}
 				}		

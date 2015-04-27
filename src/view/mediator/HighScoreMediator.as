@@ -3,6 +3,7 @@ package view.mediator
 	import config.GeneralNotification;
 	
 	import flash.display.Sprite;
+	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -15,6 +16,7 @@ package view.mediator
 		public function HighScoreMediator()
 		{
 			super(NAME, new HighScoreVL());
+			highScoreVL.addEventListener("onClickOnReturnBtn", clickOnReturnBtnFunction);
 		}
 		private function get highScoreVL():HighScoreVL {
 			return viewComponent as HighScoreVL;
@@ -28,14 +30,12 @@ package view.mediator
 				case "myDto":
 					var arr:Array = notification.getBody() as Array;
 					highScoreVL.addResultsOnScoreBord(arr);
-					break;
-				
-				
+				break;
 			}
-
-
-
 		}
-		
+		public function clickOnReturnBtnFunction(e:Event):void
+		{
+			sendNotification("clickReturnBtn");
+		}
 	}
 }

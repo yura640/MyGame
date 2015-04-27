@@ -26,9 +26,9 @@ package controller.comands
 			facade.removeMediator(ScoreMediator.NAME);
 			sendNotification(GeneralNotification.GAME_IS_LOADED);
 			(facade.retrieveProxy(UserProxy.NAME) as UserProxy).user.score = 0;
-			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).timer.stop();
+			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).timerStop();
 			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).timerBonusLable.stop();
-			//(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
 		}
 	}
 }

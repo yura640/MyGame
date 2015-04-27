@@ -37,6 +37,7 @@ package controller.comands
 			facade.registerCommand(GeneralNotification.GAME_IS_LOADED, StartLobbyComand);
 			facade.registerCommand("onClickOnHighScoreBtn", OpenHighScoreCommand);
 			facade.registerCommand("addNameCommand", AddNameCommand);
+			facade.registerCommand("clickReturnBtn", RemoveHighScorePanelCommand);
 			facade.registerCommand(GeneralNotification.START_THE_GAME, StartLevelComand);
 			facade.registerCommand(GeneralNotification.GENERATE_ENEMI_AND_CELL, AddedEnemiCommand); 
 			facade.registerCommand(GeneralNotification.CLICK_ON_ENEMIE, KillingEnemieCommand);	

@@ -21,7 +21,6 @@ package view.mediator
 		}
 		public function addName (e:EventTrans):void
 		{
-			sendNotification("onClickOnHighScoreBtn", e.data);
 			sendNotification("addNameCommand", e.data);
 		}
 		public function btnClicked(event:Event):void{
@@ -30,6 +29,7 @@ package view.mediator
 		public function onClickOnHighScoreBtn (e:Event):void
 		{
 			sendNotification("onClickOnHighScoreBtn");
+			
 		}
 	}
 }
