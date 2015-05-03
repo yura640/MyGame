@@ -16,19 +16,19 @@ package view.mediator
 		{
 			super(NAME, new LobbyViewLogic());
 			viewComponent.addEventListener(GeneralNotification.START_BTN_CLICKED, btnClicked);
-			viewComponent.addEventListener("addName", addName);
-			viewComponent.addEventListener("clickOnHighScoreBtn", onClickOnHighScoreBtn);
+			viewComponent.addEventListener(GeneralNotification.ADD_NAME, addName);
+			viewComponent.addEventListener(GeneralNotification.CLICK_ON_HIGH_SCORE_BTN, onClickOnHighScoreBtn);
 		}
 		public function addName (e:EventTrans):void
 		{
-			sendNotification("addNameCommand", e.data);
+			//sendNotification(GeneralNotification.ADD_NAME_COMMAND, e.data);
 		}
-		public function btnClicked(event:Event):void{
-			sendNotification(GeneralNotification.START_THE_GAME);
+		public function btnClicked(event:EventTrans):void{
+			sendNotification(GeneralNotification.START_THE_GAME, event.data);
 		}
 		public function onClickOnHighScoreBtn (e:Event):void
 		{
-			sendNotification("onClickOnHighScoreBtn");
+			sendNotification(GeneralNotification.ON_CLICK_ON_HIGH_SCORE_BTN);
 			
 		}
 	}

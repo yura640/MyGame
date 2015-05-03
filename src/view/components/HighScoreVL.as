@@ -1,5 +1,7 @@
 package view.components
 {
+	import config.GeneralNotification;
+	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
@@ -25,7 +27,8 @@ package view.components
 				scoreDto.splice((content["scoreText_"+scoreDto.length] as TextField));
 			} else {
 				var obj:Object = scoreDto[i];
-				(content["scoreText_"+i] as TextField).text = i+1 + "." + "  " + obj.name + "Score:" as String;
+				(content["scoreText_"+i] as TextField).text = i+1 + "." + " " + "PLAYER:" + " " +  obj.name + " "+ "SCORE:" + " " + obj.score;
+				trace (obj.score);
 			}
 			}
 			}
@@ -36,7 +39,7 @@ package view.components
 		}
 		public function onClickOnReturnBtn(e:MouseEvent):void
 		{
-			dispatchEvent( new Event("onClickOnReturnBtn"));
+			dispatchEvent( new Event(GeneralNotification.ON_CLICK_ON_RETURN_BTN));
 		}
 			}
 			}

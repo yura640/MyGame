@@ -16,18 +16,18 @@ package view.mediator
 		public function HighScoreMediator()
 		{
 			super(NAME, new HighScoreVL());
-			highScoreVL.addEventListener("onClickOnReturnBtn", clickOnReturnBtnFunction);
+			highScoreVL.addEventListener(GeneralNotification.ON_CLICK_ON_RETURN_BTN, clickOnReturnBtnFunction);
 		}
 		private function get highScoreVL():HighScoreVL {
 			return viewComponent as HighScoreVL;
 		}
 		override public function listNotificationInterests():Array{
-			return ["myDto"];
+			return [GeneralNotification.MY_HIGH_SCORE_DTO];
 		}
 		override public function handleNotification(notification:INotification):void{
 			
 			switch(notification.getName()){
-				case "myDto":
+				case GeneralNotification.MY_HIGH_SCORE_DTO:
 					var arr:Array = notification.getBody() as Array;
 					highScoreVL.addResultsOnScoreBord(arr);
 				break;
@@ -35,7 +35,7 @@ package view.mediator
 		}
 		public function clickOnReturnBtnFunction(e:Event):void
 		{
-			sendNotification("clickReturnBtn");
+			sendNotification(GeneralNotification.CLICK_RETURN_BTN);
 		}
 	}
 }

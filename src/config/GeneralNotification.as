@@ -20,7 +20,7 @@ package config
 		public static const CLICK_ON_ENEMIE:String = "killEnemie";
 		public static const ON_CLICK_ON_TARGET:String = "onClickOnTarget";
 		public static const START_BTN_CLICKED:String = "startBtnClicked";
-		
+		public static const ON_CLICK_ON_HIGH_SCORE_BTN:String = "onClickOnHighScoreBtn";
 		public static const DELL_ENI_TARGET:String = "ydalitTargetOtRedBtn";
 		public static const ADD_RED_BTN:String = "addRedButton";
 		public static const ADD_BONUS_LABLE:String = "addBonusLable";
@@ -44,6 +44,14 @@ package config
 		public static const ADD_BONUS_SEC:String = "addTenSec";
 		public static const PUSH_ON_ENEMIE:String = "clockOnEnemie";
 		public static const VIZUAL_TIMER:String = "timer";
+		public static const ADD_NAME_COMMAND:String = "addNameCommand";
+		public static const CLICK_RETURN_BTN:String = "clickReturnBtn";
+		public static const MY_HIGH_SCORE_DTO:String = "myDto";
+		public static const ON_CLICK_ON_RETURN_BTN:String = "onClickOnReturnBtn";
+		public static const ADD_NAME:String = "addName";
+		public static const CLICK_ON_HIGH_SCORE_BTN:String = "clickOnHighScoreBtn";
+	
+		
 		
 		//public static const 
 	}

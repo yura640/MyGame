@@ -47,13 +47,14 @@ package view.components
 			
 		
 		 public function onClickStartBtn(event:MouseEvent):void{
-			 dispatchEvent(new Event(GeneralNotification.START_BTN_CLICKED)); 
-			 userName = user.text;	
-			 dispatchEvent(new EventTrans ("addName", userName));
+			 userName = user.text;
+			 dispatchEvent(new EventTrans(GeneralNotification.START_BTN_CLICKED, userName)); 
+			 	
+			 //dispatchEvent(new EventTrans (GeneralNotification.ADD_NAME, userName));
 		 }
 		 public function onClickHighScoreBtn(e:MouseEvent):void
 		 {
-			 dispatchEvent(new Event("clickOnHighScoreBtn"));
+			 dispatchEvent(new Event(GeneralNotification.CLICK_ON_HIGH_SCORE_BTN));
 		 }
 	}
 }

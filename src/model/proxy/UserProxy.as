@@ -25,20 +25,21 @@ package model.proxy
 		public function addScore(score:int):void{
 			user.score+=score;
 			sendNotification(GeneralNotification.CHANGE_SCORE, user.score);
+			
 		}
 		
 		public function addUserName (name1:String):void
 		{
 			user.name = name1;
-			sharedObject();
+			
 		}
 		public function sharedObject():void
 		{
-			 mySo = SharedObject.getLocal("mySharedObject6");
+			 mySo = SharedObject.getLocal("mySharedObject7");
 			
 			 if (mySo.data == null) {
 				 mySo.data[user.name] = new Object();
-				 mySo.data.name = "mySharedObject6";
+				 mySo.data.name = "mySharedObject7";
 				 mySo.data[user.name].name = user.name;
 				 mySo.data[user.name].score = user.score;
 				// trace (user.name + "1");
@@ -71,7 +72,7 @@ package model.proxy
 						mySo.data.name;
 					}
 				}
-					sendNotification("myDto", arrOfNamesAndScores);
+					sendNotification(GeneralNotification.MY_HIGH_SCORE_DTO, arrOfNamesAndScores);
 		}
 				}		
 //		public function sendDto ():void

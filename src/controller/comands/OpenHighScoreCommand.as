@@ -12,7 +12,7 @@ package controller.comands
 		override public function execute(notification:INotification):void
 		{
 			facade.registerMediator(new HighScoreMediator());
-			(facade.retrieveProxy(UserProxy.NAME) as UserProxy).addScoreAndNameToArray();
+			(facade.retrieveProxy(UserProxy.NAME) as UserProxy).sharedObject();
 			
 		}
 	}
