@@ -1,5 +1,7 @@
 package view.components
 {
+	import com.greensock.TweenLite;
+	
 	import config.GeneralNotification;
 	
 	import flash.display.DisplayObject;
