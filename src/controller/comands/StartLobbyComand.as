@@ -11,6 +11,7 @@ package controller.comands
 		override public function execute(notification:INotification):void{
 			facade.registerMediator( new LobbyMediator());
 			
+			
 		}
 	}
 }

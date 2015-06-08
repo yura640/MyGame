@@ -4,6 +4,7 @@ package view.components
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -20,15 +21,16 @@ package view.components
 	
 	public class TargetVievLogic extends EventDispatcher
 	{
-		public var currentTarget:DisplayObject;
+		public var currentTarget:MovieClip;
 	
 		public function TargetVievLogic(incomingDto:EnemieDto)
 		{
 			super();
 		
-			currentTarget = WareHouse.getInstance().getAsset("vrag_"+incomingDto.enemieiID) as SimpleButton;
+			currentTarget = WareHouse.getInstance().getAsset("vrag_"+incomingDto.enemieiID) as MovieClip;
 			
-			incomingDto.visualEnemie = currentTarget;
+			incomingDto.visualEnemie = currentTarget as MovieClip;
+			currentTarget.stop();
 			
 			currentTarget.addEventListener(MouseEvent.CLICK, clockOnEnemie);
 		

@@ -37,15 +37,16 @@ package model.proxy
 		
 		private function timerOff(e:TimerEvent):void
 		{
+		lableTimer.removeEventListener(TimerEvent.TIMER, timerOff);
 			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
 		}
 		
-		public function resetLableTimer():void
-		{
-			if(lableTimer.running){
-			lableTimer.reset();
-			}
-		}
+//		public function resetLableTimer():void
+//		{
+//			if(lableTimer.running){
+//			lableTimer.stop();
+//			}
+//		}
 		
 		public function remCurentBonus():void
 		{

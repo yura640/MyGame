@@ -1,6 +1,8 @@
 package view.components
 {
 	import com.greensock.TweenLite;
+	import com.greensock.easing.Cubic;
+	import com.greensock.plugins.OnCompleteRenderPlugin;
 	
 	import config.GeneralNotification;
 	
@@ -12,6 +14,7 @@ package view.components
 	import flash.display.Stage;
 	import flash.events.DataEvent;
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.net.drm.VoucherAccessInfo;
@@ -32,7 +35,7 @@ package view.components
 		public var target:TargetVievLogic;
 		public var redBtn:BonusViewLigic;
 		public var bonusLable:BonusViewLigic;
-		
+		public var incomingDto:EnemieDto;
 		public var returnBtn:SimpleButton;
 		
 		public function GamePlayViewLogic()
@@ -51,11 +54,12 @@ package view.components
 			initBtns();
 		}
 		public function addTargetToRandomCell(incomingDto:EnemieDto):void
-		{
+		{	
 			target = new TargetVievLogic(incomingDto);
-			if (cells[incomingDto.cellID].getChild == null){
+			if (target.currentTarget.parent == null){
 			cells[incomingDto.cellID].addChild(target.currentTarget);
 			target.addEventListener(GeneralNotification.PUSH_ON_ENEMIE , onClickOnTarget);
+			
 			}
 		}
 		public function onClickOnTarget(a:EventTrans):void
@@ -74,24 +78,34 @@ package view.components
 			{
 			dispatchEvent(new Event(GeneralNotification.RETURN_COMMAND)); 
 			}
+		
 		public function removeEnemie(incomingDto:EnemieDto):void
-			{		
-			if (incomingDto.visualEnemie.parent !== null){
-			incomingDto.visualEnemie.parent.removeChild(incomingDto.visualEnemie);
-			if (incomingDto.enemieiID ==1){
-			dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, 1));
-			}if (incomingDto.enemieiID ==2){
-				dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, 2));
-			}if (incomingDto.enemieiID ==3){
-				dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, 3));
-				}
-			}		
+		{
+			if (incomingDto.visualEnemie.parent != null){
+				incomingDto.visualEnemie.addFrameScript(incomingDto.visualEnemie.totalFrames-1, lastFrameScript);
 		}
-		public function removeEnemieByTimer(incomingRemDto:DisplayObject):void
+		
+		function lastFrameScript():void
+		{
+		incomingDto.visualEnemie.stop();
+		incomingDto.visualEnemie.parent.removeChild(incomingDto.visualEnemie);
+		incomingDto.resetTimer();
+		dispatchEvent(new EventTrans(GeneralNotification.RESET_SCORE_AND_TIMER, incomingDto.enemieiID));
+	}
+
+	incomingDto.visualEnemie.gotoAndPlay(2);
+}
+	
+		
+		public function removeEnemieByTimer(incomingRemDto:MovieClip):void
 		{	
 			if (incomingRemDto.parent != null){
+				
+			TweenLite.to(incomingRemDto, 1 , {x:incomingRemDto.x, y:-330, ease:Cubic.easeIn, onComplete:removeFunction});
+			function removeFunction():void{
 			incomingRemDto.parent.removeChild(incomingRemDto);
 			}	
+			}
 		}
 		public function addBonusSeconds():void
 		{
@@ -104,8 +118,8 @@ package view.components
 		{
 			redBtn = new BonusViewLigic();
 			content.addChild(redBtn.redBtn);
-			redBtn.redBtn.x = 300;
-			redBtn.redBtn.y = 280;
+			redBtn.redBtn.x = 320;
+			redBtn.redBtn.y = 220;
 			redBtn.redBtn.addEventListener(MouseEvent.CLICK, onClickOnRedBtn);
 		}
 		public function onClickOnRedBtn(e:MouseEvent):void

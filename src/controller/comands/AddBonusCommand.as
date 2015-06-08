@@ -16,14 +16,14 @@ package controller.comands
 
 			if (bonusNumber == 1){
 			sendNotification(GeneralNotification.ADD_CURENT_BONUS);	
-			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+			//(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
 			sendNotification(GeneralNotification.DELL_BONUS_LABLE);
 
 			} if (bonusNumber == 2){
 				(facade.retrieveProxy(GameProxy.NAME) as GameProxy).resetGameTimer();
 				sendNotification(GeneralNotification.ADD_BONUS_SEC);
 				sendNotification(GeneralNotification.DELL_BONUS_LABLE);
-				(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+				//(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
 			}
 	}
 	}

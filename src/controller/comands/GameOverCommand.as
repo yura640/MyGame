@@ -22,7 +22,7 @@ package controller.comands
 			//(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetdellBonusTimer();
 			facade.registerMediator(new GameOverMediator(score));
 			facade.removeMediator(GamePlayMediator.NAME);
-			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+			//(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
 		}
 	}
 }

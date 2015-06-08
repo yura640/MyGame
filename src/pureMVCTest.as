@@ -16,20 +16,24 @@ package
 	
 	
 
-	[SWF(width = '2500',height = '2500', frameRate = '24', backgroundColor = '#FFFFFF')]
-	public class pureMVCTest extends Sprite
-	{
-		public function pureMVCTest()
-		{
-			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+	[SWF(width = '600', height = '480', frameRate = '24', backgroundColor = 'fffaaavv')]
+	
+	public class pureMVCTest
+	{ 
+		private static var _instance:pureMVCTest;
+		
+		public static function getInstance():pureMVCTest{
+			if (_instance==null){
+				_instance = new pureMVCTest();
+			}
+			return _instance;
 		}
 		
-		protected function onAdded(event:Event):void
+		
+		public function startApp(sprite:Sprite):void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-			
 			Facade.getInstance().registerCommand(GeneralNotification.START, BootComand);
-			Facade.getInstance().sendNotification(GeneralNotification.START, this);
+			Facade.getInstance().sendNotification(GeneralNotification.START, sprite);
 		}
 	}	
 }

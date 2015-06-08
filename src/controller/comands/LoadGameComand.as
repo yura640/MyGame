@@ -7,6 +7,8 @@ package controller.comands
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
+	import model.dto.FlashVarsDto;
+	import model.proxy.FlashVariantsProxy;
 	import model.proxy.GameProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -28,7 +30,9 @@ package controller.comands
 			var loaderInfo:LoaderInfo = event.target as LoaderInfo; 
 			loaderInfo.removeEventListener(Event.COMPLETE, onLoad)
 			WareHouse.getInstance().setData(loaderInfo);
-			sendNotification(GeneralNotification.GAME_IS_LOADED);
+			var flashVarsDto:FlashVarsDto=new FlashVarsDto(); // pyti загрузки
+			facade.registerProxy(new FlashVariantsProxy(flashVarsDto));
+			
 		}
 	}
 }

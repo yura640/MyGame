@@ -1,6 +1,7 @@
 package model.dto
 {
 	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
@@ -13,7 +14,7 @@ package model.dto
 	{
 		
 			public var enemieiID:int;
-			public var visualEnemie:DisplayObject;
+			public var visualEnemie:MovieClip;
 			public var cellID:int;
 			private var timer:Timer;
 			
@@ -27,10 +28,12 @@ package model.dto
 	public function onTimer(e:TimerEvent):void
 	{
 		dispatchEvent(new EventTrans("dellCurentEnemie", visualEnemie));
+		visualEnemie.stop();
+		timer.stop();
 	}
 	public function resetTimer():void
 	{
-		timer.reset();
+		timer.stop();
 	}
 }
 }

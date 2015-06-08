@@ -3,7 +3,11 @@ package controller.comands
 	import config.GeneralNotification;
 	
 	import model.dto.EnemieDto;
+	import model.dto.GamesConfigDO;
+	import model.dto.LevelDto;
 	import model.proxy.EnemieProxy;
+	import model.proxy.GamesConfigProxy;
+	import model.proxy.LevelProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -12,26 +16,23 @@ package controller.comands
 	{
 		override public function execute(notification:INotification):void
 		{
+			var checkingEnemie:LevelDto;
 			var neededCell:int = Math.floor(Math.random()*10);
 			var neededSepar:int = (Math.floor(Math.random()*3)+1);
-			var enemieDto:EnemieDto = new EnemieDto();
-			
-			if (neededSepar==1){
-			enemieDto.setupTimer(2000); // red
-			}
-			if (neededSepar==2){
-				enemieDto.setupTimer(2500); // ellow
-			}
-			if (neededSepar==3){
-				enemieDto.setupTimer(1000);  //zel
-			} 
-			
+			checkingEnemie = (facade.retrieveProxy(LevelProxy.NAME) as LevelProxy).levelDto;
+			if (neededSepar == checkingEnemie.typeOfEnemie){
+			var  enemieDto:EnemieDto = new EnemieDto();
 			enemieDto.visualEnemie = null;
 			enemieDto.enemieiID = neededSepar;
 			enemieDto.cellID = neededCell;
 			
-			sendNotification(GeneralNotification.PUSH_ENEMI_ON_CELL, enemieDto);
-			(facade.retrieveProxy(EnemieProxy.NAME) as EnemieProxy).addDtoToArray(enemieDto);
-			}
+			// (facade.retrieveProxy(EnemieProxy.NAME) as EnemieProxy).addDtoToArray(enemieDto);
+			 (facade.retrieveProxy(EnemieProxy.NAME) as EnemieProxy).proverkaNaCell(enemieDto);
+			} else 
+				sendNotification(GeneralNotification.GENERATE_ENEMI_AND_CELL);
+			
+			
+			
 		}
 	}
+}

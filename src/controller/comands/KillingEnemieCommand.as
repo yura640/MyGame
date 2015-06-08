@@ -3,6 +3,7 @@ package controller.comands
 	import config.GeneralNotification;
 	
 	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import flash.net.sendToURL;
 	
 	import model.proxy.EnemieProxy;
@@ -19,7 +20,7 @@ package controller.comands
 	{
 		override public function execute(notification:INotification):void
 		{
-			var enemi:DisplayObject = notification.getBody() as DisplayObject;
+			var enemi:MovieClip = notification.getBody() as MovieClip;
 				
 			(facade.retrieveProxy(EnemieProxy.NAME) as EnemieProxy).removeEnemie(enemi);
 			}

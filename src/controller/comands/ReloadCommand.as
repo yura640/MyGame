@@ -28,7 +28,7 @@ package controller.comands
 			
 			(facade.retrieveProxy(GameProxy.NAME) as GameProxy).timerStop();
 			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).timerBonusLable.stop();
-			(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
+			//(facade.retrieveProxy(BonusProxy.NAME) as BonusProxy).resetLableTimer();
 		}
 	}
 }

@@ -50,7 +50,9 @@ package config
 		public static const ON_CLICK_ON_RETURN_BTN:String = "onClickOnReturnBtn";
 		public static const ADD_NAME:String = "addName";
 		public static const CLICK_ON_HIGH_SCORE_BTN:String = "clickOnHighScoreBtn";
-	
+		public static const LOAD_MAIN_RESOURSES:String = "loadMainResourses";
+		public static const MAIN_CONTENT_LOADED:String = "mainContentLoaded";
+		public static const LOAD_CURENT_LEVEL:String = "loadCurentLevel";
 		
 		
 		//public static const 

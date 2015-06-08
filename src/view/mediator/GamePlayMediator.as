@@ -5,6 +5,7 @@ package view.mediator
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
@@ -77,7 +78,7 @@ package view.mediator
 					break;
 				
 				case GeneralNotification.REMOVE_ENEMIE_BY_TIMER:
-					var incomingRemDto:DisplayObject = notification.getBody() as DisplayObject;
+					var incomingRemDto:MovieClip = notification.getBody() as MovieClip;
 					startViewLogic.removeEnemieByTimer(incomingRemDto);
 					break;
 				
